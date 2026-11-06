@@ -20,6 +20,7 @@ class Finding:
     path: str  # corpus-relative, forward slashes, e.g. "files/f0123456789.py"
     line: int
     rule: str
+    severity: str = ""  # the tool's own grade of the finding, where it has one
 
 
 def norm_path(raw: str) -> str:
@@ -62,6 +63,8 @@ class Adapter:
     version: str = ""
     #: Rules the tool documents as look-ahead or leakage rules; ``None`` means every rule.
     leak_rules: frozenset[str] | None = None
+    #: The tool's highest grade, for the strict sensitivity analysis; "" if it grades nothing.
+    top_severity: str = ""
 
     def invoke(self, corpus: Path) -> str:
         raise NotImplementedError
@@ -75,6 +78,9 @@ class Adapter:
 
     def counts(self, f: Finding) -> bool:
         return self.leak_rules is None or f.rule in self.leak_rules
+
+    def counts_strict(self, f: Finding) -> bool:
+        return self.counts(f) and f.severity == self.top_severity
 
 
 def load_json(raw: str, tool: str):

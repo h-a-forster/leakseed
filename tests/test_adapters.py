@@ -1,6 +1,7 @@
 """Adapter parsing on outputs recorded from the pinned tools (tests/fixtures/tools)."""
 
 import json
+from importlib import metadata
 from pathlib import Path
 
 import pytest
@@ -22,6 +23,16 @@ EXPECTED = {
     },
     "peekproof": {Finding(NEG, 7, "PP001"), Finding(SPLIT, 13, "PP005"), Finding(FILL, 8, "PP002")},
     "leakguard": {Finding(NEG, 7, "LG001"), Finding(SPLIT, 13, "LG004"), Finding(FILL, 8, "LG007")},
+    "overfit-gauntlet": {
+        Finding(NEG, 7, "LA01"), Finding(SPLIT, 13, "LA04"), Finding(FILL, 8, "LA03"),
+    },
+    "monte-neo": {
+        Finding(NEG, 7, "negative_shift"), Finding(SPLIT, 9, "full_sample_stat"),
+        Finding(SPLIT, 13, "shuffled_split"), Finding(FILL, 8, "backward_fill"),
+    },
+    "nofuturedata": {
+        Finding(NEG, 7, "SRC001"), Finding(SPLIT, 13, "SRC011"), Finding(FILL, 8, "SRC002"),
+    },
     "backtest-audit": {
         Finding(NEG, 7, "LAB001"), Finding(SCALER, 11, "LEAK001"),
         *(Finding(p, 1, "STAT002") for p in (NEG, SPLIT, FILL, SCALER)),
@@ -31,14 +42,38 @@ EXPECTED = {
 
 @pytest.mark.parametrize("tool", sorted(EXPECTED))
 def test_recorded_outputs_parse_to_findings(tool):
-    raw = (FIXTURES / f"{tool}.json").read_text(encoding="utf-8")
-    assert set(get(tool).parse(raw)) == EXPECTED[tool]
+    raw = _recorded(tool)
+    assert {Finding(f.path, f.line, f.rule) for f in get(tool).parse(raw)} == EXPECTED[tool]
+
+
+@pytest.mark.parametrize(
+    ("tool", "dist"),
+    [
+        ("lookahead-lint", "lookahead-lint"), ("peekproof", "peekproof"),
+        ("backtest-audit", "backtest-audit"), ("leakguard", "leakguard-mcp"),
+        ("overfit-gauntlet", "overfit-gauntlet"), ("monte-neo", "monte-neo"),
+        ("nofuturedata", "nofuturedata"),
+    ],
+)  # fmt: skip
+def test_scorecard_version_is_the_installed_one(tool, dist):
+    assert get(tool).version.split("+")[0] == metadata.version(dist)
 
 
 def test_backtest_audit_counts_only_leak_rules():
     adapter = get("backtest-audit")
     assert adapter.counts(Finding(NEG, 7, "LAB001"))
     assert not adapter.counts(Finding(NEG, 1, "STAT002"))
+
+
+def test_strict_keeps_only_the_tools_top_severity():
+    adapter = get("monte-neo")
+    assert adapter.counts_strict(Finding(NEG, 7, "negative_shift", "fail"))
+    assert not adapter.counts_strict(Finding(NEG, 7, "full_sample_stat", "warn"))
+    assert any(f.severity == "warn" for f in adapter.parse(_recorded("monte-neo")))
+
+
+def _recorded(tool: str) -> str:
+    return (FIXTURES / f"{tool}.json").read_text(encoding="utf-8")
 
 
 def test_ruff_output_with_absolute_paths():
@@ -70,5 +105,11 @@ def test_tool_errors_fail_loudly():
     errors = json.dumps({"errors": [{"path": "files/f1.py"}], "findings": []})
     with pytest.raises(AdapterError, match="reported errors"):
         get("lookahead-lint").parse(errors)
+    with pytest.raises(AdapterError, match="could not parse"):
+        get("monte-neo").parse(json.dumps({"files/f1.py": {"status": "skip", "findings": []}}))
+    with pytest.raises(AdapterError, match="could not parse"):
+        get("overfit-gauntlet").parse(json.dumps([{"file": "files/f1.py", "code": "LA00"}]))
+    with pytest.raises(AdapterError, match="reported errors"):
+        get("nofuturedata").parse(json.dumps({"findings": [{"code": "SRC000"}]}))
     with pytest.raises(AdapterError, match="unknown tool"):
         get("nope")

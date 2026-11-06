@@ -1,0 +1,43 @@
+{
+  "ok": false,
+  "rows_scanned": 57,
+  "finding_count": 3,
+  "findings": [
+    {
+      "code": "SRC001",
+      "severity": "error",
+      "message": "negative shift can read future rows",
+      "row": null,
+      "line": 7,
+      "column": null,
+      "details": {
+        "path": "files\\f505ade6863.py",
+        "source_kind": "python"
+      }
+    },
+    {
+      "code": "SRC011",
+      "severity": "error",
+      "message": "shuffled train/test splitting can mix future observations into time-series evaluation",
+      "row": null,
+      "line": 13,
+      "column": null,
+      "details": {
+        "path": "files\\f8b0d0eb31c.py",
+        "source_kind": "python"
+      }
+    },
+    {
+      "code": "SRC002",
+      "severity": "error",
+      "message": "backfilling can copy future observations into the past",
+      "row": null,
+      "line": 8,
+      "column": null,
+      "details": {
+        "path": "files\\f9054c1ca1e.py",
+        "source_kind": "python"
+      }
+    }
+  ]
+}

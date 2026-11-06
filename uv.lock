@@ -19,8 +19,15 @@ resolution-markers = [
 [options]
 exclude-newer = "2026-10-16T00:00:00Z"
 
+[options.exclude-newer-package]
+monte-neo = "2026-10-21T00:00:00Z"
+
 [manifest]
-overrides = [{ name = "fastmcp", marker = "sys_platform == 'never'" }]
+overrides = [
+    { name = "fastmcp", marker = "sys_platform == 'never'" },
+    { name = "mcp", marker = "sys_platform == 'never'" },
+    { name = "numba", marker = "sys_platform == 'never'" },
+]
 
 [[package]]
 name = "aiofile"
@@ -264,7 +271,7 @@ client = [
     { name = "beartype", marker = "python_full_version >= '3.15' and sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "exceptiongroup", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "httpx2", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
-    { name = "mcp", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "mcp", marker = "sys_platform == 'never'" },
     { name = "opentelemetry-api", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "py-key-value-aio", extra = ["filetree", "keyring", "memory"], marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "starlette", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
@@ -279,7 +286,7 @@ server = [
     { name = "joserfc", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "jsonref", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "jsonschema-path", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
-    { name = "mcp", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "mcp", marker = "sys_platform == 'never'" },
     { name = "openapi-pydantic", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "opentelemetry-api", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
     { name = "packaging", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
@@ -511,6 +518,9 @@ dev = [
     { name = "backtest-audit" },
     { name = "leakguard-mcp" },
     { name = "lookahead-lint" },
+    { name = "monte-neo" },
+    { name = "nofuturedata" },
+    { name = "overfit-gauntlet" },
     { name = "peekproof" },
     { name = "pytest" },
     { name = "ruff" },
@@ -519,6 +529,9 @@ tools = [
     { name = "backtest-audit" },
     { name = "leakguard-mcp" },
     { name = "lookahead-lint" },
+    { name = "monte-neo" },
+    { name = "nofuturedata" },
+    { name = "overfit-gauntlet" },
     { name = "peekproof" },
 ]
 
@@ -536,6 +549,9 @@ dev = [
     { name = "backtest-audit", specifier = "==1.0.0" },
     { name = "leakguard-mcp", specifier = "==0.1.1" },
     { name = "lookahead-lint", specifier = "==1.0.1" },
+    { name = "monte-neo", specifier = "==0.54.0" },
+    { name = "nofuturedata", git = "https://github.com/ORANGINGS/nofuturedata?rev=fb46880ee610738a7f559df448d8850ff47b1744" },
+    { name = "overfit-gauntlet", specifier = "==0.1.0" },
     { name = "peekproof", git = "https://github.com/Thesimpleex/peekproof?rev=e6c56c37e42d434bc57fd837e89fe0e3f273b5ef" },
     { name = "pytest", specifier = ">=8" },
     { name = "ruff", specifier = ">=0.6" },
@@ -544,6 +560,9 @@ tools = [
     { name = "backtest-audit", specifier = "==1.0.0" },
     { name = "leakguard-mcp", specifier = "==0.1.1" },
     { name = "lookahead-lint", specifier = "==1.0.1" },
+    { name = "monte-neo", specifier = "==0.54.0" },
+    { name = "nofuturedata", git = "https://github.com/ORANGINGS/nofuturedata?rev=fb46880ee610738a7f559df448d8850ff47b1744" },
+    { name = "overfit-gauntlet", specifier = "==0.1.0" },
     { name = "peekproof", git = "https://github.com/Thesimpleex/peekproof?rev=e6c56c37e42d434bc57fd837e89fe0e3f273b5ef" },
 ]
 
@@ -602,6 +621,12 @@ wheels = [
 ]
 
 [[package]]
+name = "llvmlite"
+version = "0.50.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/11/c5/907cec40688a34eb489cded74d555e1ee4af8cf49d83e03dba2c2d4cfe27/llvmlite-0.50.0.tar.gz", hash = "sha256:f2a2cd6ec9ffcc1b7147dea0d7a49efebf17a2b434e0c2844fe175999d571eb4", size = 194522, upload-time = "2026-09-29T18:44:46.782Z" }
+
+[[package]]
 name = "lookahead-lint"
 version = "1.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -615,7 +640,7 @@ name = "markdown-it-py"
 version = "4.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "mdurl", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "mdurl" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-4.2.0.tar.gz", hash = "sha256:04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49", size = 82454, upload-time = "2026-05-07T12:08:28.36Z" }
 wheels = [
@@ -669,6 +694,22 @@ wheels = [
 ]
 
 [[package]]
+name = "monte-neo"
+version = "0.54.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mcp", marker = "sys_platform == 'never'" },
+    { name = "numba", marker = "sys_platform == 'never'" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "rich" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/67/a6/7d2cf70b7f2e846cd5bf33d7956487d5cf024014d3ea193e2f03ed882355/monte_neo-0.54.0.tar.gz", hash = "sha256:4c871a5e674a1bf38c31ab534a740bcf57760b0adadb9353a8ebd3f48487e2e5", size = 3664712, upload-time = "2026-10-20T10:04:00.451Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/48/15/4fdab707cf310da06eb5906444890dacd74fe7193b716d6b16b24c8740f2/monte_neo-0.54.0-py3-none-any.whl", hash = "sha256:c33419a2d7792ba6f6ce88992acf2728f74236a1bbf50c17406e645bd2b4bfad", size = 660979, upload-time = "2026-10-20T10:03:58.496Z" },
+]
+
+[[package]]
 name = "more-itertools"
 version = "11.2.1"
 source = { registry = "https://pypi.org/simple" }
@@ -685,6 +726,21 @@ sdist = { url = "https://files.pythonhosted.org/packages/bf/21/f64d6b2dbea7bf3f8
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d1/89/5d4c86da1130d9059681e5b6cd7645df5c10279a6a079c5c37dcb2cc6f3f/narwhals-2.27.1-py3-none-any.whl", hash = "sha256:d057df13f5852b8e157596e82eb5e955fad267425df5e420e0ee9863da483b31", size = 483211, upload-time = "2026-10-10T06:52:16.32Z" },
 ]
+
+[[package]]
+name = "nofuturedata"
+version = "0.5.0.dev0"
+source = { git = "https://github.com/ORANGINGS/nofuturedata?rev=fb46880ee610738a7f559df448d8850ff47b1744#fb46880ee610738a7f559df448d8850ff47b1744" }
+
+[[package]]
+name = "numba"
+version = "0.68.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "llvmlite", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "numpy", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4e/cd/e8280f9ffa30fea9fabc5341223701231fcc5d53a31f51419d42d4bec3a6/numba-0.68.0.tar.gz", hash = "sha256:8a781de54b980b98f43bff7f1093701b5f07c80d031c7cfa8a87493d8bf73f2d", size = 2855363, upload-time = "2026-09-30T15:05:44.721Z" }
 
 [[package]]
 name = "numpy"
@@ -781,6 +837,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/2e/02/6e0ae9cc61bd3169d401077b507b3ebc344745171e1051ab430be012dcd9/opentelemetry_api-1.45.1.tar.gz", hash = "sha256:aa38ed19bcc084ba42782a73255b3582283eced7ad6dddbd6695189e69adfb75", size = 72804, upload-time = "2026-10-06T17:32:58.133Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1e/41/f7dcf80b81ee8e71c1a2b59f14208bc723edbd89ed027a73b175abf6348e/opentelemetry_api-1.45.1-py3-none-any.whl", hash = "sha256:b31553efa588ae44bc306f863c785c5333a9ecc091248c6ee68b4b6c87fdedfb", size = 60256, upload-time = "2026-10-06T17:32:33.506Z" },
+]
+
+[[package]]
+name = "overfit-gauntlet"
+version = "0.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scipy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7f/19/441a4e8b9e1acb5f4740ac78ed00ab8810af7171393ae10ef882e3ebfcf0/overfit_gauntlet-0.1.0.tar.gz", hash = "sha256:e827001c5ae639f442b957a9844b99a3038dc5de6e77e3862713794f26dfaaf3", size = 27413, upload-time = "2026-07-07T03:05:19.003Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1e/91/4b6dea3e899bcbba33d7ea4ab75e68aa286ea5c6b3d0aa8b4b035637f7e9/overfit_gauntlet-0.1.0-py3-none-any.whl", hash = "sha256:3777e0a36cb8f59bf14b93d408f461a5967582084a3c5967105b7c3a949912aa", size = 25039, upload-time = "2026-07-07T03:05:17.352Z" },
 ]
 
 [[package]]
@@ -1166,8 +1235,8 @@ name = "rich"
 version = "15.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "markdown-it-py", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
-    { name = "pygments", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "markdown-it-py" },
+    { name = "pygments" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/c0/8f/0722ca900cc807c13a6a0c696dacf35430f72e0ec571c4275d2371fca3e9/rich-15.0.0.tar.gz", hash = "sha256:edd07a4824c6b40189fb7ac9bc4c52536e9780fbbfbddf6f1e2502c31b068c36", size = 230680, upload-time = "2026-04-12T08:24:00.75Z" }
 wheels = [

@@ -32,6 +32,7 @@ class Peekproof(Adapter):
     package = "peekproof (git e6c56c3)"
     version = "0.1.0+e6c56c3"
     leak_rules = None  # PP001-PP013 are all look-ahead, leakage or selection-bias rules
+    top_severity = "high"
 
     def invoke(self, corpus: Path) -> str:
         cmd = [executable("peekproof"), "lint", "files", "--format", "json"]
@@ -40,7 +41,7 @@ class Peekproof(Adapter):
 
     def parse(self, raw: str) -> list[Finding]:
         return [
-            Finding(norm_path(f["path"]), int(f["line"]), f["rule_id"])
+            Finding(norm_path(f["path"]), int(f["line"]), f["rule_id"], f["confidence"])
             for f in load_json(raw, self.name)
         ]
 
@@ -86,6 +87,7 @@ class Leakguard(Adapter):
     package = "leakguard-mcp (static core)"
     version = "0.1.1"
     leak_rules = None  # LG001-LG010 are all leakage rules
+    top_severity = "error"
 
     def invoke(self, corpus: Path) -> str:
         return run_tool([sys.executable, "-I", "-c", _LEAKGUARD_DRIVER], corpus, ok_codes=(0,))
@@ -96,8 +98,93 @@ class Leakguard(Adapter):
         for path, res in doc.items():
             if not res["ok"]:
                 raise AdapterError(f"{self.name} could not parse {path}: {res['parse_error']}")
-            out += [Finding(norm_path(path), int(f["line"]), f["rule_id"]) for f in res["findings"]]
+            out += [
+                Finding(norm_path(path), int(f["line"]), f["rule_id"], f["severity"])
+                for f in res["findings"]
+            ]
         return out
+
+
+# Both call the tool's own lint function, which parses each file and executes none of them.
+_GAUNTLET_DRIVER = """
+import dataclasses, json, sys
+from overfit_gauntlet.lint import lint_path
+json.dump([dataclasses.asdict(f) for f in lint_path("files")], sys.stdout)
+"""
+
+_MONTE_NEO_DRIVER = """
+import json, sys
+from pathlib import Path
+from monte_neo.verify.lint import lint_source
+out = {}
+for path in sorted(Path("files").glob("*.py")):
+    out[path.as_posix()] = lint_source(path.read_text(encoding="utf-8"))
+json.dump(out, sys.stdout)
+"""
+
+
+class OverfitGauntlet(Adapter):
+    name = "overfit-gauntlet"
+    package = "overfit-gauntlet (static lint)"
+    version = "0.1.0"
+    leak_rules = None  # LA01-LA08 are all look-ahead or leakage rules
+    top_severity = "error"
+
+    def invoke(self, corpus: Path) -> str:
+        return run_tool([sys.executable, "-I", "-c", _GAUNTLET_DRIVER], corpus, ok_codes=(0,))
+
+    def parse(self, raw: str) -> list[Finding]:
+        doc = load_json(raw, self.name)
+        unparsed = [f["file"] for f in doc if f["code"] == "LA00"]
+        if unparsed:
+            raise AdapterError(f"{self.name} could not parse {unparsed[:3]}")
+        return [
+            Finding(norm_path(f["file"]), int(f["line"]), f["code"], f["severity"]) for f in doc
+        ]
+
+
+class MonteNeo(Adapter):
+    name = "monte-neo"
+    package = "monte-neo (static lint)"
+    version = "0.54.0"
+    leak_rules = None  # every rule of its look-ahead lint
+    top_severity = "fail"
+
+    def invoke(self, corpus: Path) -> str:
+        return run_tool([sys.executable, "-I", "-c", _MONTE_NEO_DRIVER], corpus, ok_codes=(0,))
+
+    def parse(self, raw: str) -> list[Finding]:
+        doc = load_json(raw, self.name)
+        out = []
+        for path, res in doc.items():
+            if res["status"] == "skip":
+                raise AdapterError(f"{self.name} could not parse {path}: {res.get('error')}")
+            out += [
+                Finding(norm_path(path), int(f["line"]), f["rule"], f["severity"])
+                for f in res["findings"]
+            ]
+        return out
+
+
+class NoFutureData(Adapter):
+    name = "nofuturedata"
+    package = "nofuturedata (git fb46880)"
+    version = "0.5.0.dev0+fb46880"
+    leak_rules = None  # SRC001-SRC012; SRC000 and CFG codes are failures and raise below
+
+    def invoke(self, corpus: Path) -> str:
+        # --time-series switches on its contextual rules; every corpus file is a time series.
+        cmd = [executable("nofuture"), "scan", "files", "--json", "--time-series"]
+        return run_tool(cmd, corpus, ok_codes=(0, 1))
+
+    def parse(self, raw: str) -> list[Finding]:
+        findings = load_json(raw, self.name)["findings"]
+        failed = [f for f in findings if f["code"] == "SRC000" or f["code"].startswith("CFG")]
+        if failed:
+            raise AdapterError(f"{self.name} reported errors: {failed[:3]}")
+        return [
+            Finding(norm_path(f["details"]["path"]), int(f["line"]), f["code"]) for f in findings
+        ]
 
 
 class RuffDefaults(Adapter):
@@ -109,7 +196,7 @@ class RuffDefaults(Adapter):
     leak_rules = None
 
     def invoke(self, corpus: Path) -> str:
-        cmd = [executable("ruff"), "check", "--isolated", "--output-format", "json"]
+        cmd = [executable("ruff"), "check", "--isolated", "--no-cache", "--output-format", "json"]
         return run_tool(cmd + ["--exit-zero", "files"], corpus, ok_codes=(0,))
 
     def parse(self, raw: str) -> list[Finding]:
@@ -120,8 +207,12 @@ class RuffDefaults(Adapter):
 
 
 ADAPTERS: dict[str, type[Adapter]] = {
-    a.name: a for a in (LookaheadLint, Peekproof, BacktestAudit, Leakguard, RuffDefaults)
-}
+    a.name: a
+    for a in (
+        LookaheadLint, Peekproof, BacktestAudit, Leakguard, OverfitGauntlet, MonteNeo,
+        NoFutureData, RuffDefaults,
+    )
+}  # fmt: skip
 
 
 def get(name: str) -> Adapter:
