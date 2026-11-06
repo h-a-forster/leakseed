@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use leakseed, please cite it as below."
+title: leakseed
+abstract: >-
+  A seeded corpus of look-ahead leaks in backtest code, in leak/clean twin pairs whose
+  labels are verified by a causality oracle, with an independent scorecard of static
+  leakage linters using template-clustered intervals and tests.
+type: software
+authors:
+  - name: h-a-forster
+repository-code: "https://github.com/h-a-forster/leakseed"
+license: MIT
+version: 0.1.0
+date-released: "2026-11-06"
+keywords:
+  - backtesting
+  - look-ahead bias
+  - data leakage
+  - static analysis
+  - linter benchmark
+  - seeded bugs
