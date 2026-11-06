@@ -114,6 +114,7 @@ run statically (no tool executes corpus code). No network or model calls at run 
 | `corpus/probes/` | hand-written pairs for rules the v1 style cannot trigger |
 | `results/v1/` | oracle verdicts, tool findings, impact, `summary.json`, `scorecard.md`, `probes.md`, and `corpus.json`, which ties the directory to its corpus |
 | `results/fresh/` | scorecards of two fresh generator seeds |
+| `REPORT.md` | full findings, method and limits |
 | `docs/DESIGN.md` | taxonomy, oracle soundness, statistics, threat model, tool vetting, prior art |
 | `docs/upstream/` | draft issues for the linters (not filed) |
 
