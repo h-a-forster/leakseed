@@ -186,9 +186,10 @@ perturbation. A check that cannot fail is not evidence.
 
 - **Tuning on the corpus.** Once public, v1 can be learnt: rules written to match its exact
   idioms. v1 is frozen. `leakseed generate --check` fails if the generator no longer
-  reproduces it byte for byte. Template changes go into a new version with a fresh seed.
-  Future scorecards report v1 and the fresh corpus side by side; a gap between them is a
-  sign of tuning.
+  reproduces it byte for byte. Template changes go into a new version. A fresh generator seed
+  alone is not enough to reveal tuning: it changes names and window lengths and keeps every
+  idiom, so seeds 101 and 202 score almost exactly like v1 (`results/fresh/`). That shows the
+  rates do not hang on those surface choices. Detecting tuning takes new templates.
 - **Who read what first.** lookahead-lint, peekproof, backtest-audit and leakguard were read
   during the first build, so the templates may reflect their rules. overfit-gauntlet,
   monte-neo and nofuturedata were read after v1 was generated, and v1 did not change

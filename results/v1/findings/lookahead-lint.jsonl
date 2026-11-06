@@ -1,18 +1,18 @@
-{"line": 8, "path": "files/f065633271a.py", "rule": "LA007"}
-{"line": 6, "path": "files/f1eb953da72.py", "rule": "LA003"}
-{"line": 7, "path": "files/f3c6c5631e9.py", "rule": "LA005"}
-{"line": 10, "path": "files/f421ec9900a.py", "rule": "LA002"}
-{"line": 7, "path": "files/f505ade6863.py", "rule": "LA001"}
-{"line": 11, "path": "files/f518d028dc7.py", "rule": "LA005"}
-{"line": 7, "path": "files/f59f2f80fc2.py", "rule": "LA001"}
-{"line": 9, "path": "files/f5c77048605.py", "rule": "LA002"}
-{"line": 11, "path": "files/f623137935d.py", "rule": "LA005"}
-{"line": 7, "path": "files/f646bb135d7.py", "rule": "LA005"}
-{"line": 10, "path": "files/f8200fb1c7a.py", "rule": "LA002"}
-{"line": 13, "path": "files/f8b0d0eb31c.py", "rule": "LA005"}
-{"line": 8, "path": "files/f9054c1ca1e.py", "rule": "LA002"}
-{"line": 14, "path": "files/fcd1b3331e2.py", "rule": "LA005"}
-{"line": 5, "path": "files/fe368b2fbb2.py", "rule": "LA002"}
-{"line": 8, "path": "files/fe78a59cb97.py", "rule": "LA007"}
-{"line": 14, "path": "files/ff02e776295.py", "rule": "LA005"}
-{"line": 7, "path": "files/ff420335daf.py", "rule": "LA003"}
+{"line": 8, "path": "files/f065633271a.py", "rule": "LA007", "severity": ""}
+{"line": 6, "path": "files/f1eb953da72.py", "rule": "LA003", "severity": ""}
+{"line": 7, "path": "files/f3c6c5631e9.py", "rule": "LA005", "severity": ""}
+{"line": 10, "path": "files/f421ec9900a.py", "rule": "LA002", "severity": ""}
+{"line": 7, "path": "files/f505ade6863.py", "rule": "LA001", "severity": ""}
+{"line": 11, "path": "files/f518d028dc7.py", "rule": "LA005", "severity": ""}
+{"line": 7, "path": "files/f59f2f80fc2.py", "rule": "LA001", "severity": ""}
+{"line": 9, "path": "files/f5c77048605.py", "rule": "LA002", "severity": ""}
+{"line": 11, "path": "files/f623137935d.py", "rule": "LA005", "severity": ""}
+{"line": 7, "path": "files/f646bb135d7.py", "rule": "LA005", "severity": ""}
+{"line": 10, "path": "files/f8200fb1c7a.py", "rule": "LA002", "severity": ""}
+{"line": 13, "path": "files/f8b0d0eb31c.py", "rule": "LA005", "severity": ""}
+{"line": 8, "path": "files/f9054c1ca1e.py", "rule": "LA002", "severity": ""}
+{"line": 14, "path": "files/fcd1b3331e2.py", "rule": "LA005", "severity": ""}
+{"line": 5, "path": "files/fe368b2fbb2.py", "rule": "LA002", "severity": ""}
+{"line": 8, "path": "files/fe78a59cb97.py", "rule": "LA007", "severity": ""}
+{"line": 14, "path": "files/ff02e776295.py", "rule": "LA005", "severity": ""}
+{"line": 7, "path": "files/ff420335daf.py", "rule": "LA003", "severity": ""}

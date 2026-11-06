@@ -11,6 +11,18 @@
   "package": "lookahead-lint",
   "version": "1.0.1"
  },
+ "monte-neo": {
+  "package": "monte-neo (static lint)",
+  "version": "0.54.0"
+ },
+ "nofuturedata": {
+  "package": "nofuturedata (git fb46880)",
+  "version": "0.5.0.dev0+fb46880"
+ },
+ "overfit-gauntlet": {
+  "package": "overfit-gauntlet (static lint)",
+  "version": "0.1.0"
+ },
  "peekproof": {
   "package": "peekproof (git e6c56c3)",
   "version": "0.1.0+e6c56c3"

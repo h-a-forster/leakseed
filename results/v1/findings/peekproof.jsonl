@@ -1,46 +1,46 @@
-{"line": 8, "path": "files/f00812c33ea.py", "rule": "PP002"}
-{"line": 10, "path": "files/f058a6adc75.py", "rule": "PP002"}
-{"line": 10, "path": "files/f05d500efe7.py", "rule": "PP007"}
-{"line": 8, "path": "files/f065633271a.py", "rule": "PP007"}
-{"line": 5, "path": "files/f07c95b34b2.py", "rule": "PP006"}
-{"line": 8, "path": "files/f0e7c664faf.py", "rule": "PP002"}
-{"line": 10, "path": "files/f18907a6cb9.py", "rule": "PP002"}
-{"line": 10, "path": "files/f1ae6c81230.py", "rule": "PP002"}
-{"line": 6, "path": "files/f1eb953da72.py", "rule": "PP003"}
-{"line": 5, "path": "files/f20c6289a9a.py", "rule": "PP006"}
-{"line": 8, "path": "files/f3d78656c49.py", "rule": "PP006"}
-{"line": 10, "path": "files/f421ec9900a.py", "rule": "PP002"}
-{"line": 6, "path": "files/f46432ee5cd.py", "rule": "PP001"}
-{"line": 9, "path": "files/f4e6801e472.py", "rule": "PP006"}
-{"line": 7, "path": "files/f505ade6863.py", "rule": "PP001"}
-{"line": 7, "path": "files/f59f2f80fc2.py", "rule": "PP001"}
-{"line": 9, "path": "files/f5c77048605.py", "rule": "PP002"}
-{"line": 9, "path": "files/f5d2093e2d8.py", "rule": "PP007"}
-{"line": 9, "path": "files/f651a1f9c85.py", "rule": "PP002"}
-{"line": 10, "path": "files/f6fa1608970.py", "rule": "PP006"}
-{"line": 8, "path": "files/f7e63712502.py", "rule": "PP006"}
-{"line": 6, "path": "files/f7eba91aab9.py", "rule": "PP006"}
-{"line": 7, "path": "files/f7eca50d678.py", "rule": "PP003"}
-{"line": 10, "path": "files/f8200fb1c7a.py", "rule": "PP002"}
-{"line": 13, "path": "files/f8b0d0eb31c.py", "rule": "PP005"}
-{"line": 8, "path": "files/f9054c1ca1e.py", "rule": "PP002"}
-{"line": 5, "path": "files/f9927e7b515.py", "rule": "PP002"}
-{"line": 16, "path": "files/fa625b3c597.py", "rule": "PP011"}
-{"line": 7, "path": "files/fa71aa23061.py", "rule": "PP003"}
-{"line": 10, "path": "files/fab999f2155.py", "rule": "PP006"}
-{"line": 2, "path": "files/fb543d59110.py", "rule": "PP006"}
-{"line": 10, "path": "files/fb56bc5a6e8.py", "rule": "PP006"}
-{"line": 10, "path": "files/fb61b0d8251.py", "rule": "PP002"}
-{"line": 9, "path": "files/fb624bb85c2.py", "rule": "PP002"}
-{"line": 10, "path": "files/fc240e5ca82.py", "rule": "PP006"}
-{"line": 10, "path": "files/fcfee82b4bb.py", "rule": "PP006"}
-{"line": 7, "path": "files/fd346e4f191.py", "rule": "PP007"}
-{"line": 5, "path": "files/fe368b2fbb2.py", "rule": "PP002"}
-{"line": 8, "path": "files/fe78a59cb97.py", "rule": "PP007"}
-{"line": 16, "path": "files/feaf443153a.py", "rule": "PP011"}
-{"line": 5, "path": "files/fec2808b463.py", "rule": "PP002"}
-{"line": 9, "path": "files/ff19e7026d3.py", "rule": "PP006"}
-{"line": 7, "path": "files/ff420335daf.py", "rule": "PP003"}
-{"line": 8, "path": "files/ff6c51b81bb.py", "rule": "PP006"}
-{"line": 8, "path": "files/ffc29d63484.py", "rule": "PP002"}
-{"line": 5, "path": "files/fffafccdc5d.py", "rule": "PP006"}
+{"line": 8, "path": "files/f00812c33ea.py", "rule": "PP002", "severity": "medium"}
+{"line": 10, "path": "files/f058a6adc75.py", "rule": "PP002", "severity": "medium"}
+{"line": 10, "path": "files/f05d500efe7.py", "rule": "PP007", "severity": "low"}
+{"line": 8, "path": "files/f065633271a.py", "rule": "PP007", "severity": "high"}
+{"line": 5, "path": "files/f07c95b34b2.py", "rule": "PP006", "severity": "medium"}
+{"line": 8, "path": "files/f0e7c664faf.py", "rule": "PP002", "severity": "medium"}
+{"line": 10, "path": "files/f18907a6cb9.py", "rule": "PP002", "severity": "medium"}
+{"line": 10, "path": "files/f1ae6c81230.py", "rule": "PP002", "severity": "medium"}
+{"line": 6, "path": "files/f1eb953da72.py", "rule": "PP003", "severity": "high"}
+{"line": 5, "path": "files/f20c6289a9a.py", "rule": "PP006", "severity": "medium"}
+{"line": 8, "path": "files/f3d78656c49.py", "rule": "PP006", "severity": "medium"}
+{"line": 10, "path": "files/f421ec9900a.py", "rule": "PP002", "severity": "high"}
+{"line": 6, "path": "files/f46432ee5cd.py", "rule": "PP001", "severity": "high"}
+{"line": 9, "path": "files/f4e6801e472.py", "rule": "PP006", "severity": "medium"}
+{"line": 7, "path": "files/f505ade6863.py", "rule": "PP001", "severity": "high"}
+{"line": 7, "path": "files/f59f2f80fc2.py", "rule": "PP001", "severity": "high"}
+{"line": 9, "path": "files/f5c77048605.py", "rule": "PP002", "severity": "high"}
+{"line": 9, "path": "files/f5d2093e2d8.py", "rule": "PP007", "severity": "low"}
+{"line": 9, "path": "files/f651a1f9c85.py", "rule": "PP002", "severity": "medium"}
+{"line": 10, "path": "files/f6fa1608970.py", "rule": "PP006", "severity": "medium"}
+{"line": 8, "path": "files/f7e63712502.py", "rule": "PP006", "severity": "medium"}
+{"line": 6, "path": "files/f7eba91aab9.py", "rule": "PP006", "severity": "medium"}
+{"line": 7, "path": "files/f7eca50d678.py", "rule": "PP003", "severity": "high"}
+{"line": 10, "path": "files/f8200fb1c7a.py", "rule": "PP002", "severity": "high"}
+{"line": 13, "path": "files/f8b0d0eb31c.py", "rule": "PP005", "severity": "high"}
+{"line": 8, "path": "files/f9054c1ca1e.py", "rule": "PP002", "severity": "high"}
+{"line": 5, "path": "files/f9927e7b515.py", "rule": "PP002", "severity": "medium"}
+{"line": 16, "path": "files/fa625b3c597.py", "rule": "PP011", "severity": "medium"}
+{"line": 7, "path": "files/fa71aa23061.py", "rule": "PP003", "severity": "high"}
+{"line": 10, "path": "files/fab999f2155.py", "rule": "PP006", "severity": "medium"}
+{"line": 2, "path": "files/fb543d59110.py", "rule": "PP006", "severity": "medium"}
+{"line": 10, "path": "files/fb56bc5a6e8.py", "rule": "PP006", "severity": "medium"}
+{"line": 10, "path": "files/fb61b0d8251.py", "rule": "PP002", "severity": "medium"}
+{"line": 9, "path": "files/fb624bb85c2.py", "rule": "PP002", "severity": "medium"}
+{"line": 10, "path": "files/fc240e5ca82.py", "rule": "PP006", "severity": "medium"}
+{"line": 10, "path": "files/fcfee82b4bb.py", "rule": "PP006", "severity": "medium"}
+{"line": 7, "path": "files/fd346e4f191.py", "rule": "PP007", "severity": "high"}
+{"line": 5, "path": "files/fe368b2fbb2.py", "rule": "PP002", "severity": "high"}
+{"line": 8, "path": "files/fe78a59cb97.py", "rule": "PP007", "severity": "high"}
+{"line": 16, "path": "files/feaf443153a.py", "rule": "PP011", "severity": "medium"}
+{"line": 5, "path": "files/fec2808b463.py", "rule": "PP002", "severity": "medium"}
+{"line": 9, "path": "files/ff19e7026d3.py", "rule": "PP006", "severity": "medium"}
+{"line": 7, "path": "files/ff420335daf.py", "rule": "PP003", "severity": "high"}
+{"line": 8, "path": "files/ff6c51b81bb.py", "rule": "PP006", "severity": "medium"}
+{"line": 8, "path": "files/ffc29d63484.py", "rule": "PP002", "severity": "high"}
+{"line": 5, "path": "files/fffafccdc5d.py", "rule": "PP006", "severity": "medium"}

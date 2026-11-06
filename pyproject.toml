@@ -77,7 +77,7 @@ packages = ["src/leakseed"]
 [tool.hatch.build.targets.sdist]
 include = [
     "src/leakseed", "tests", "docs", "corpus", "results", "scripts", "uv.lock",
-    "README.md", "REPORT.md", "LICENSE", "CONTRIBUTING.md", "SECURITY.md",
+    "README.md", "LICENSE", "CONTRIBUTING.md", "SECURITY.md",
     "CITATION.cff",
 ]
 

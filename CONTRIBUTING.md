@@ -67,7 +67,7 @@ comes with a test that fails without it.
 ## Results
 
 Files under `results/` are generated. Never edit them by hand; regenerate with the commands in
-[README.md](README.md), and keep every number in README.md and REPORT.md traceable to them.
+[README.md](README.md), and keep every number in README.md traceable to them.
 Put scratch output in `tmp/`.
 
 ## Pull requests

@@ -1,396 +1,396 @@
-{"line": 1, "path": "files/f000564f1bb.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f006bd798a4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f00812c33ea.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f011461cb34.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0171aa6209.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0241012031.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f032dfffef6.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0356578f3f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0494aafcfb.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f058a6adc75.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f05d500efe7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0623d08206.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f06358b7f3c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f065633271a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f07bd3722e6.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f07c95b34b2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f07f41aae35.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f097889e174.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f09a692b7e3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0b8301b733.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0cc28b2ecd.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0cd2bee5f1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0d14a15993.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0dcd326c9f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0e09221424.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f0e7c664faf.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f10293280c7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f10fac74bc3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f11f308aed1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f12808039d4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1290f0ad64.py", "rule": "STAT002"}
-{"line": 15, "path": "files/f1290f0ad64.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f12b3f21031.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1373deb6e3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f13d184f145.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f13ec9c8e1b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f146f50364b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1493599e1e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1638e39c85.py", "rule": "STAT002"}
-{"line": 19, "path": "files/f1638e39c85.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f1643ae8497.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f173e9e7e91.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f178169036d.py", "rule": "STAT002"}
-{"line": 14, "path": "files/f178169036d.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f18085e9e7b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f18907a6cb9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1954f95bea.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1a37404ca7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1ab487cbba.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1ae4defa91.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1ae6c81230.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1b85716c54.py", "rule": "STAT002"}
-{"line": 11, "path": "files/f1b85716c54.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/f1ba96c1db3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1be6836bcb.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1cada33e73.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1d832b7418.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1d92a9eaf7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1e44b5430f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1e4bee8069.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1e7d9eecdd.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f1eb953da72.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f20c6289a9a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f20f2e6e1a1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f210d256063.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f221fd1c552.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f22f084523f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f25177d9a99.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f254cde2238.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f25b1f7dd5a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f2661e9a208.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f26c46adabe.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f272105f636.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f274c0f5bee.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f2882b725b8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f28ebcb45b2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f29e1a71024.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f2b194e5e2f.py", "rule": "STAT002"}
-{"line": 23, "path": "files/f2b194e5e2f.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f2b3bc007ee.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f2cc96c2acf.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f2dec227339.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f2e09ed71f9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f308a980f04.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f308bb96359.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f30913e54a5.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f32bf59a9ab.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f331f54b980.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f33b0d845ba.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3429da91d1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f34c7570d06.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f34e865eb92.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f35c3f57c0a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f37f4462606.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3877a8c8fe.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3891229634.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f38d1ee7bab.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f391bbff8a7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f397d615a6f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3b1852c3f1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3be90a6d5e.py", "rule": "STAT002"}
-{"line": 6, "path": "files/f3be90a6d5e.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/f3c3c9cf9de.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3c6c5631e9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3ce3942d67.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3d78656c49.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3e1631df3c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3e1c303949.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3e5a1c5a17.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3f0d84fa45.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3f8c3a4aa3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f3faf8c1f46.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f416142bd2a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f41ff2c9f48.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f421ec9900a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f425e36f0b7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f42dd5b1ea8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4363420da9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4435c06ba7.py", "rule": "STAT002"}
-{"line": 14, "path": "files/f4435c06ba7.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f45c6b7c8b3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f463f8bb8aa.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f46432ee5cd.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f466538ffbe.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4675b318e9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f47050ffd0a.py", "rule": "STAT002"}
-{"line": 14, "path": "files/f47050ffd0a.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f486f6f8c24.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f48a2250e79.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4b730167c9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4c22f8c3ee.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4d12304b1a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4d8818fd5c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4da5e44a18.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4dbfb1a16d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4e6801e472.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4e9b7edeee.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4f47a1d743.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f4fc6b1799f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f505ade6863.py", "rule": "STAT002"}
-{"line": 7, "path": "files/f505ade6863.py", "rule": "LAB001"}
-{"line": 1, "path": "files/f510d432d85.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f518d028dc7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f51eb63e815.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f539ad64841.py", "rule": "STAT002"}
-{"line": 6, "path": "files/f539ad64841.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/f55918d6c13.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f559580cbf0.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f566d93c71a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f576a6b8051.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f57e37364d1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f590c674eed.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f59d0d795d3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f59f2f80fc2.py", "rule": "STAT002"}
-{"line": 7, "path": "files/f59f2f80fc2.py", "rule": "LAB001"}
-{"line": 1, "path": "files/f5b35fdbcf0.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f5b3a398c5f.py", "rule": "STAT002"}
-{"line": 19, "path": "files/f5b3a398c5f.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f5bd291d45d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f5c20d6ebd1.py", "rule": "STAT002"}
-{"line": 15, "path": "files/f5c20d6ebd1.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f5c77048605.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f5d2093e2d8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f5d5bbfc060.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f5eded2c214.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f5f5746dd0e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f5ff1561d0b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f60393f2c5c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f60c1122089.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f613454bfc0.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f61385eaab8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f614696ceef.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f61d7975c53.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f61fe3095bc.py", "rule": "STAT002"}
-{"line": 11, "path": "files/f61fe3095bc.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/f623137935d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f624cb205b5.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f62b73b4635.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f646bb135d7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f651a1f9c85.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6533b240b9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f666934937d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f67b8a95d75.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f686d1dfd93.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f69434737ac.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6a6471752b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6b137991dc.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6c53bf8f79.py", "rule": "STAT002"}
-{"line": 12, "path": "files/f6c53bf8f79.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/f6daf5fdc48.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6e78bfc0c6.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6f9c070a1e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6fa1608970.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f6fb2b0970b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f70162bda20.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f705c4d79ca.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f714751cb9f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7170d96019.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7274e131ad.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f737812dbdf.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f746a45724e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f762216ecf8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f76408f2a73.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7749099ebc.py", "rule": "STAT002"}
-{"line": 8, "path": "files/f7749099ebc.py", "rule": "LAB001"}
-{"line": 1, "path": "files/f7773860df9.py", "rule": "STAT002"}
-{"line": 15, "path": "files/f7773860df9.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f778a33b3b4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f78e2e73a51.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7af2ad733c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7b743256e6.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7bf2541977.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7bfb92cba0.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7cc58cd8b8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7e63712502.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7ea28eb2f0.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7eba91aab9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7eca50d678.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f7efb2dae7d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8094a9feb2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8200fb1c7a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f821f4d4714.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f836a203a70.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f87717248d1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f87b0f00ff6.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f89193c4021.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8b0d0eb31c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8c45a1db85.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8d7dc03d7f.py", "rule": "STAT002"}
-{"line": 15, "path": "files/f8d7dc03d7f.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f8de839890a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8e0b4e25c9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8e4d28c1df.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f8fa4d81865.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9054c1ca1e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f90b7a72389.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f90cdad69b8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9169546c32.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f919edbc6b4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f927feb9c7f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f94b3647cbd.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f958ff4b265.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f965a9a7324.py", "rule": "STAT002"}
-{"line": 23, "path": "files/f965a9a7324.py", "rule": "STAT001"}
-{"line": 1, "path": "files/f966777e1f2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9927e7b515.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f998f6b2dd5.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9a0d8b0133.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9a7a2a7116.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9aa50f9009.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9b4e8904b3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9bf9678156.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9d76dee5d3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9ef3d0567e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/f9f95d687c4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa0628b0c66.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa0bb3bc082.py", "rule": "STAT002"}
-{"line": 23, "path": "files/fa0bb3bc082.py", "rule": "STAT001"}
-{"line": 1, "path": "files/fa0d757a634.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa22af89a83.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa27a8ee56f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa283e0fa90.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa2a688e5b2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa2c5cb558a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa4b27f2921.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa4ba8a838d.py", "rule": "STAT002"}
-{"line": 14, "path": "files/fa4ba8a838d.py", "rule": "STAT001"}
-{"line": 1, "path": "files/fa4e2979991.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa55c80ae26.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa625b3c597.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa70de9ad44.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa71aa23061.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa749dcf918.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fa75fa48ef7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/faa514f0d36.py", "rule": "STAT002"}
-{"line": 1, "path": "files/faaac2901fe.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fab999f2155.py", "rule": "STAT002"}
-{"line": 1, "path": "files/faba326bcf7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/facde6b158a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fad42415a10.py", "rule": "STAT002"}
-{"line": 19, "path": "files/fad42415a10.py", "rule": "STAT001"}
-{"line": 1, "path": "files/fae79e9ab19.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fafc29a50fd.py", "rule": "STAT002"}
-{"line": 1, "path": "files/faff822ed46.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb10e84acdd.py", "rule": "STAT002"}
-{"line": 10, "path": "files/fb10e84acdd.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/fb4c6aaebd5.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb543d59110.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb56bc5a6e8.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb61b0d8251.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb624bb85c2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb63ad4206a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb64ff76718.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb6fd6e598d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb766580ed9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb78bd05c96.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb7b4161b5e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fb9ed7cb35b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbaa8a4f35d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbab6486a01.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbb1541bfcd.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbb9b51b5a6.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbbd2ae3178.py", "rule": "STAT002"}
-{"line": 23, "path": "files/fbbd2ae3178.py", "rule": "STAT001"}
-{"line": 1, "path": "files/fbc0eede6c4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbc3d5df147.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbc4c539ddf.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbc7c84c419.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fbde852949e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc033df33fa.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc0f7246ec4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc240e5ca82.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc39642917d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc58dd05762.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc725ec6a0f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc90b41a756.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc913dd7e84.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fc9bc39f382.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcc111abd3e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcc397d5ded.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcd1b3331e2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcd67b1f19a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcda55a9bf3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fce33998f64.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcee18e040d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcf7ce7e9f1.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcfee82b4bb.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fcffe67d812.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd01713aae7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd134a32f08.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd2a303b52e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd2a43a0eef.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd3009e692c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd346e4f191.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd48908136e.py", "rule": "STAT002"}
-{"line": 12, "path": "files/fd48908136e.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/fd527884f2f.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd5996b1360.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd5d4a301e2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd5d77329a0.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd6339ab3e3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd63b7324d0.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd685203cc2.py", "rule": "STAT002"}
-{"line": 19, "path": "files/fd685203cc2.py", "rule": "STAT001"}
-{"line": 1, "path": "files/fd6baad3d7c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd7358ffbd7.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd7916f7039.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd917e4edb5.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd93802739e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd97715cb24.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fd9cb7c3d5c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fda1477a2c3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fda7ff5a3ff.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fdb6bd2ae38.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fdc6c8372a3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fdd84789b55.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fddbd96715b.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fe1a8356932.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fe368b2fbb2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fe3d3af552e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fe3d54e1188.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fe78a59cb97.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fe9ff3a698c.py", "rule": "STAT002"}
-{"line": 1, "path": "files/feaf443153a.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fec2808b463.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fee3575cf55.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fee5e3ce18e.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fee6c17bf34.py", "rule": "STAT002"}
-{"line": 1, "path": "files/feff076ce65.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff0036774b9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff02e776295.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff089aa55db.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff0b4e60a6d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff171724def.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff19e7026d3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff283b25290.py", "rule": "STAT002"}
-{"line": 10, "path": "files/ff283b25290.py", "rule": "LEAK001"}
-{"line": 1, "path": "files/ff2b0985dd3.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff330163755.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff333fbc290.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff33c44da47.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff420335daf.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff4cc30ba12.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff540d1a7f4.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff5792b3abe.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff69a440ca2.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff6c51b81bb.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff7377bdc51.py", "rule": "STAT002"}
-{"line": 8, "path": "files/ff7377bdc51.py", "rule": "LAB001"}
-{"line": 1, "path": "files/ff966696588.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ff9fe48f4ab.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ffaedf0b35d.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ffb051b48e9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ffc29d63484.py", "rule": "STAT002"}
-{"line": 1, "path": "files/ffe0fd79af9.py", "rule": "STAT002"}
-{"line": 1, "path": "files/fffafccdc5d.py", "rule": "STAT002"}
+{"line": 1, "path": "files/f000564f1bb.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f006bd798a4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f00812c33ea.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f011461cb34.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0171aa6209.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0241012031.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f032dfffef6.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0356578f3f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0494aafcfb.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f058a6adc75.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f05d500efe7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0623d08206.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f06358b7f3c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f065633271a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f07bd3722e6.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f07c95b34b2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f07f41aae35.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f097889e174.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f09a692b7e3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0b8301b733.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0cc28b2ecd.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0cd2bee5f1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0d14a15993.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0dcd326c9f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0e09221424.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f0e7c664faf.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f10293280c7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f10fac74bc3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f11f308aed1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f12808039d4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1290f0ad64.py", "rule": "STAT002", "severity": ""}
+{"line": 15, "path": "files/f1290f0ad64.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f12b3f21031.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1373deb6e3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f13d184f145.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f13ec9c8e1b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f146f50364b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1493599e1e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1638e39c85.py", "rule": "STAT002", "severity": ""}
+{"line": 19, "path": "files/f1638e39c85.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f1643ae8497.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f173e9e7e91.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f178169036d.py", "rule": "STAT002", "severity": ""}
+{"line": 14, "path": "files/f178169036d.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f18085e9e7b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f18907a6cb9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1954f95bea.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1a37404ca7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1ab487cbba.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1ae4defa91.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1ae6c81230.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1b85716c54.py", "rule": "STAT002", "severity": ""}
+{"line": 11, "path": "files/f1b85716c54.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/f1ba96c1db3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1be6836bcb.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1cada33e73.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1d832b7418.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1d92a9eaf7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1e44b5430f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1e4bee8069.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1e7d9eecdd.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f1eb953da72.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f20c6289a9a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f20f2e6e1a1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f210d256063.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f221fd1c552.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f22f084523f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f25177d9a99.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f254cde2238.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f25b1f7dd5a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f2661e9a208.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f26c46adabe.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f272105f636.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f274c0f5bee.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f2882b725b8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f28ebcb45b2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f29e1a71024.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f2b194e5e2f.py", "rule": "STAT002", "severity": ""}
+{"line": 23, "path": "files/f2b194e5e2f.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f2b3bc007ee.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f2cc96c2acf.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f2dec227339.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f2e09ed71f9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f308a980f04.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f308bb96359.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f30913e54a5.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f32bf59a9ab.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f331f54b980.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f33b0d845ba.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3429da91d1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f34c7570d06.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f34e865eb92.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f35c3f57c0a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f37f4462606.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3877a8c8fe.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3891229634.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f38d1ee7bab.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f391bbff8a7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f397d615a6f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3b1852c3f1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3be90a6d5e.py", "rule": "STAT002", "severity": ""}
+{"line": 6, "path": "files/f3be90a6d5e.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/f3c3c9cf9de.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3c6c5631e9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3ce3942d67.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3d78656c49.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3e1631df3c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3e1c303949.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3e5a1c5a17.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3f0d84fa45.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3f8c3a4aa3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f3faf8c1f46.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f416142bd2a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f41ff2c9f48.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f421ec9900a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f425e36f0b7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f42dd5b1ea8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4363420da9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4435c06ba7.py", "rule": "STAT002", "severity": ""}
+{"line": 14, "path": "files/f4435c06ba7.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f45c6b7c8b3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f463f8bb8aa.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f46432ee5cd.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f466538ffbe.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4675b318e9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f47050ffd0a.py", "rule": "STAT002", "severity": ""}
+{"line": 14, "path": "files/f47050ffd0a.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f486f6f8c24.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f48a2250e79.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4b730167c9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4c22f8c3ee.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4d12304b1a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4d8818fd5c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4da5e44a18.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4dbfb1a16d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4e6801e472.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4e9b7edeee.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4f47a1d743.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f4fc6b1799f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f505ade6863.py", "rule": "STAT002", "severity": ""}
+{"line": 7, "path": "files/f505ade6863.py", "rule": "LAB001", "severity": ""}
+{"line": 1, "path": "files/f510d432d85.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f518d028dc7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f51eb63e815.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f539ad64841.py", "rule": "STAT002", "severity": ""}
+{"line": 6, "path": "files/f539ad64841.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/f55918d6c13.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f559580cbf0.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f566d93c71a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f576a6b8051.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f57e37364d1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f590c674eed.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f59d0d795d3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f59f2f80fc2.py", "rule": "STAT002", "severity": ""}
+{"line": 7, "path": "files/f59f2f80fc2.py", "rule": "LAB001", "severity": ""}
+{"line": 1, "path": "files/f5b35fdbcf0.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f5b3a398c5f.py", "rule": "STAT002", "severity": ""}
+{"line": 19, "path": "files/f5b3a398c5f.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f5bd291d45d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f5c20d6ebd1.py", "rule": "STAT002", "severity": ""}
+{"line": 15, "path": "files/f5c20d6ebd1.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f5c77048605.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f5d2093e2d8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f5d5bbfc060.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f5eded2c214.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f5f5746dd0e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f5ff1561d0b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f60393f2c5c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f60c1122089.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f613454bfc0.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f61385eaab8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f614696ceef.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f61d7975c53.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f61fe3095bc.py", "rule": "STAT002", "severity": ""}
+{"line": 11, "path": "files/f61fe3095bc.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/f623137935d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f624cb205b5.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f62b73b4635.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f646bb135d7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f651a1f9c85.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6533b240b9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f666934937d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f67b8a95d75.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f686d1dfd93.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f69434737ac.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6a6471752b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6b137991dc.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6c53bf8f79.py", "rule": "STAT002", "severity": ""}
+{"line": 12, "path": "files/f6c53bf8f79.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/f6daf5fdc48.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6e78bfc0c6.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6f9c070a1e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6fa1608970.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f6fb2b0970b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f70162bda20.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f705c4d79ca.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f714751cb9f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7170d96019.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7274e131ad.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f737812dbdf.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f746a45724e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f762216ecf8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f76408f2a73.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7749099ebc.py", "rule": "STAT002", "severity": ""}
+{"line": 8, "path": "files/f7749099ebc.py", "rule": "LAB001", "severity": ""}
+{"line": 1, "path": "files/f7773860df9.py", "rule": "STAT002", "severity": ""}
+{"line": 15, "path": "files/f7773860df9.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f778a33b3b4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f78e2e73a51.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7af2ad733c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7b743256e6.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7bf2541977.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7bfb92cba0.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7cc58cd8b8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7e63712502.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7ea28eb2f0.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7eba91aab9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7eca50d678.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f7efb2dae7d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8094a9feb2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8200fb1c7a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f821f4d4714.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f836a203a70.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f87717248d1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f87b0f00ff6.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f89193c4021.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8b0d0eb31c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8c45a1db85.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8d7dc03d7f.py", "rule": "STAT002", "severity": ""}
+{"line": 15, "path": "files/f8d7dc03d7f.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f8de839890a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8e0b4e25c9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8e4d28c1df.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f8fa4d81865.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9054c1ca1e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f90b7a72389.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f90cdad69b8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9169546c32.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f919edbc6b4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f927feb9c7f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f94b3647cbd.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f958ff4b265.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f965a9a7324.py", "rule": "STAT002", "severity": ""}
+{"line": 23, "path": "files/f965a9a7324.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/f966777e1f2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9927e7b515.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f998f6b2dd5.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9a0d8b0133.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9a7a2a7116.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9aa50f9009.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9b4e8904b3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9bf9678156.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9d76dee5d3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9ef3d0567e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/f9f95d687c4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa0628b0c66.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa0bb3bc082.py", "rule": "STAT002", "severity": ""}
+{"line": 23, "path": "files/fa0bb3bc082.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/fa0d757a634.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa22af89a83.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa27a8ee56f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa283e0fa90.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa2a688e5b2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa2c5cb558a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa4b27f2921.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa4ba8a838d.py", "rule": "STAT002", "severity": ""}
+{"line": 14, "path": "files/fa4ba8a838d.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/fa4e2979991.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa55c80ae26.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa625b3c597.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa70de9ad44.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa71aa23061.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa749dcf918.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fa75fa48ef7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/faa514f0d36.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/faaac2901fe.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fab999f2155.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/faba326bcf7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/facde6b158a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fad42415a10.py", "rule": "STAT002", "severity": ""}
+{"line": 19, "path": "files/fad42415a10.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/fae79e9ab19.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fafc29a50fd.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/faff822ed46.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb10e84acdd.py", "rule": "STAT002", "severity": ""}
+{"line": 10, "path": "files/fb10e84acdd.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/fb4c6aaebd5.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb543d59110.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb56bc5a6e8.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb61b0d8251.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb624bb85c2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb63ad4206a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb64ff76718.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb6fd6e598d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb766580ed9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb78bd05c96.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb7b4161b5e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fb9ed7cb35b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbaa8a4f35d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbab6486a01.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbb1541bfcd.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbb9b51b5a6.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbbd2ae3178.py", "rule": "STAT002", "severity": ""}
+{"line": 23, "path": "files/fbbd2ae3178.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/fbc0eede6c4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbc3d5df147.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbc4c539ddf.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbc7c84c419.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fbde852949e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc033df33fa.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc0f7246ec4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc240e5ca82.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc39642917d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc58dd05762.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc725ec6a0f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc90b41a756.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc913dd7e84.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fc9bc39f382.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcc111abd3e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcc397d5ded.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcd1b3331e2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcd67b1f19a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcda55a9bf3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fce33998f64.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcee18e040d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcf7ce7e9f1.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcfee82b4bb.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fcffe67d812.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd01713aae7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd134a32f08.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd2a303b52e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd2a43a0eef.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd3009e692c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd346e4f191.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd48908136e.py", "rule": "STAT002", "severity": ""}
+{"line": 12, "path": "files/fd48908136e.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/fd527884f2f.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd5996b1360.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd5d4a301e2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd5d77329a0.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd6339ab3e3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd63b7324d0.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd685203cc2.py", "rule": "STAT002", "severity": ""}
+{"line": 19, "path": "files/fd685203cc2.py", "rule": "STAT001", "severity": ""}
+{"line": 1, "path": "files/fd6baad3d7c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd7358ffbd7.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd7916f7039.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd917e4edb5.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd93802739e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd97715cb24.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fd9cb7c3d5c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fda1477a2c3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fda7ff5a3ff.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fdb6bd2ae38.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fdc6c8372a3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fdd84789b55.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fddbd96715b.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fe1a8356932.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fe368b2fbb2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fe3d3af552e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fe3d54e1188.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fe78a59cb97.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fe9ff3a698c.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/feaf443153a.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fec2808b463.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fee3575cf55.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fee5e3ce18e.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fee6c17bf34.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/feff076ce65.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff0036774b9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff02e776295.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff089aa55db.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff0b4e60a6d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff171724def.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff19e7026d3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff283b25290.py", "rule": "STAT002", "severity": ""}
+{"line": 10, "path": "files/ff283b25290.py", "rule": "LEAK001", "severity": ""}
+{"line": 1, "path": "files/ff2b0985dd3.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff330163755.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff333fbc290.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff33c44da47.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff420335daf.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff4cc30ba12.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff540d1a7f4.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff5792b3abe.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff69a440ca2.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff6c51b81bb.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff7377bdc51.py", "rule": "STAT002", "severity": ""}
+{"line": 8, "path": "files/ff7377bdc51.py", "rule": "LAB001", "severity": ""}
+{"line": 1, "path": "files/ff966696588.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ff9fe48f4ab.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ffaedf0b35d.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ffb051b48e9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ffc29d63484.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/ffe0fd79af9.py", "rule": "STAT002", "severity": ""}
+{"line": 1, "path": "files/fffafccdc5d.py", "rule": "STAT002", "severity": ""}

@@ -1,7 +1,7 @@
 # leakseed 0.1.0 release notes
 
-First release. Numbers below come from [REPORT.md](../REPORT.md), which traces them to
-`results/v1/` and `results/fresh/`.
+First release. Results are in [results/v1/scorecard.md](../results/v1/scorecard.md) and
+`results/fresh/`.
 
 ## What it does
 
