@@ -77,9 +77,13 @@ def same(a: np.ndarray, b: np.ndarray) -> bool:
     return a.shape == b.shape and bool(np.allclose(a, b, rtol=RTOL, atol=ATOL, equal_nan=True))
 
 
-def t_grid(n: int, k: int, rng: np.random.Generator) -> list[int]:
-    """``k`` cut points stratified over [5% of n, n - 2), one uniform draw per stratum."""
-    lo, hi = max(1, n // 20), n - 2
+def t_grid(n: int, k: int, rng: np.random.Generator, first: int = 0) -> list[int]:
+    """``k`` cut points stratified over [5% of n, n - 2), one uniform draw per stratum.
+
+    ``first`` is the first row with a finite output: a cut before ``first - 1`` compares only
+    missing values, so the grid starts there instead.
+    """
+    lo, hi = max(1, n // 20, first - 1), n - 2
     edges = np.linspace(lo, hi, k + 1)
     return sorted({int(rng.uniform(edges[i], edges[i + 1])) for i in range(k)})
 
@@ -109,11 +113,12 @@ def check(
         if not np.isfinite(base).any():
             raise OracleError("output has no finite values")
         runs, responsive = 2, False
+        first = int(np.argmax(np.isfinite(base).any(axis=1)))
         # Each mode gets its own stratified grid, so two modes probe 2 * n_t distinct cuts.
         plan = [
             (t, mode)
             for mode in modes
-            for t in (ts if ts is not None else t_grid(len(dates), n_t, rng))
+            for t in (ts if ts is not None else t_grid(len(dates), n_t, rng, first))
         ]
         for t, mode in plan:
             out = run(perturb(data, t, mode, rng))

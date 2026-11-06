@@ -59,6 +59,17 @@ def test_leak_visible_only_for_some_t_needs_several_cuts(data):
     assert check(_late_peek, data, seed=5)[0] == "leak"
 
 
+def test_cuts_start_where_the_output_starts(data):
+    # Output exists only in the last 40 rows and reads the last row of the sample. A cut before
+    # those rows compares missing values, so it can never show this leak.
+    def late_output(d):
+        out = np.full(d["close"].shape, np.nan)
+        out[-40:] = d["close"].to_numpy()[-1]
+        return out
+
+    assert check(late_output, data, n_t=1, seed=0, modes=("values",))[0] == "leak"
+
+
 def test_availability_leak_needs_the_availability_mode(data):
     def survivors(d):
         close = d["close"]
@@ -79,6 +90,19 @@ def test_point_in_time_perturbation_respects_filing_dates(data):
     assert old.loc[known, "value"].equals(new.loc[known, "value"])
     assert not np.allclose(old.loc[~known, "value"], new.loc[~known, "value"])
     pd.testing.assert_frame_equal(data["close"].iloc[: t + 1], out["close"].iloc[: t + 1])
+
+
+def test_events_of_day_t_are_known_at_its_close(data):
+    def same_day(d):
+        events = d["events"]
+        daily = events.groupby(events["ts"].dt.normalize())["value"].mean()
+        return np.sign(daily.reindex(d["close"].index).fillna(0.0)).shift(1)
+
+    def next_day(d):
+        return same_day(d).shift(-1)
+
+    assert check(same_day, data, seed=1)[0] == "clean"
+    assert check(next_day, data, seed=1)[0] == "leak"
 
 
 def test_refuses_nondeterministic_vacuous_and_misshapen_outputs(data):

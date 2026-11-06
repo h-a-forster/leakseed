@@ -34,3 +34,11 @@ def test_regime_mode_catches_a_tuned_parameter_the_other_modes_miss():
     seed = zlib.crc32(row["id"].encode())
     assert check(run, data, seed=seed, modes=("values", "availability"))[0] == "clean"
     assert check(run, data, seed=seed)[0] == "leak"
+
+
+def test_a_file_that_trades_the_second_half_gets_all_its_cuts_there():
+    # With cuts over the whole sample this file passed as clean on data seed 7.
+    row = next(r for r in read_manifest(V1) if r["id"] == "f1290f0ad64")
+    assert (row["cls"], row["label"]) == ("argmax_param", "leak")
+    run = load_run(V1 / row["path"])
+    assert check(run, make_data(5000, 7), seed=zlib.crc32(row["id"].encode()))[0] == "leak"

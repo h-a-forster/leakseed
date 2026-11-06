@@ -6,7 +6,8 @@ Every corpus script receives the same ``data`` dict:
   columns name ``asset``). The last asset is delisted at 70% of the sample (NaN afterwards);
   volume has gaps of 1 to 8 days.
 - ``events``: irregular, intraday-stamped observations (``ts``, ``value``), never exactly at
-  midnight, so an event on day d is not known at the close of day d - 1.
+  midnight. A bar covers its whole calendar day, so an event on day d is known at the close of
+  day d and not at the close of day d - 1.
 - ``fundamentals``: one row per (asset, quarter): ``period_end``, ``filed`` (the availability
   time, 20 to 60 business days later) and ``value``.
 - ``fundamentals_pit``: the same plus restatements, each a later row for the same
@@ -102,14 +103,15 @@ def copy_data(data: dict) -> dict:
 def perturb(data: dict, t: int, mode: str, rng: np.random.Generator) -> dict:
     """Return a copy of ``data`` with everything after ``dates[t]`` replaced.
 
-    Rows of the date-indexed frames after row ``t`` change; events change when ``ts`` is after
-    ``dates[t]``; fundamentals rows change when ``filed`` (their availability time) is after it.
+    Rows of the date-indexed frames after row ``t`` change; events change when ``ts`` falls after
+    the close of ``dates[t]``; fundamentals rows change when ``filed`` (their availability time)
+    is after ``dates[t]``.
     ``values`` rescales and redraws values; ``availability`` changes what is missing: gaps are
     filled, a random asset disappears, events and filings are dropped; ``regime`` replaces the
     future prices by strong trend segments of a random typical length (values-mode changes
-    elsewhere), so a choice that
-    depends on future performance (a tuned parameter) is pushed to change. Membership is negated
-    in every mode so a membership-dependent leak cannot hide behind an unchanged future.
+    elsewhere), so a choice that depends on future performance (a tuned parameter) is pushed to
+    change. Membership is negated in every mode so a membership-dependent leak cannot hide
+    behind an unchanged future.
     """
     if mode not in PERTURB_MODES:
         raise ValueError(f"unknown perturbation mode {mode!r}")
@@ -119,11 +121,12 @@ def perturb(data: dict, t: int, mode: str, rng: np.random.Generator) -> dict:
     if not 0 <= t < n - 1:
         raise ValueError(f"t must be in [0, {n - 2}], got {t}")
     cut = close.index[t]
+    close_of_t = cut + pd.Timedelta(days=1)  # intraday stamps: day t ends at the next midnight
     tail = slice(t + 1, None)
     if mode in ("values", "regime"):
         for frame in (close, volume):
             frame.iloc[tail] = frame.iloc[tail].to_numpy() * rng.uniform(0.5, 1.5, (n - t - 1, k))
-        late = out["events"]["ts"] > cut
+        late = out["events"]["ts"] >= close_of_t
         out["events"].loc[late, "value"] = rng.normal(0.0, 2.0, int(late.sum()))
         for key in ("fundamentals", "fundamentals_pit"):
             frame = out[key]
@@ -155,7 +158,7 @@ def perturb(data: dict, t: int, mode: str, rng: np.random.Generator) -> dict:
             block[:, rng.integers(k)] = np.nan
             frame.iloc[tail] = block
         events = out["events"]
-        drop = (events["ts"] > cut) & (rng.random(len(events)) < 0.5)
+        drop = (events["ts"] >= close_of_t) & (rng.random(len(events)) < 0.5)
         out["events"] = events.loc[~drop].reset_index(drop=True)
         for key in ("fundamentals", "fundamentals_pit"):
             frame = out[key]
