@@ -46,7 +46,7 @@ What stands out:
   0.0003 to 0.032), but much of its recall is warnings on code both twins share. At its `fail`
   severity alone its rates are 23.4% at the site and 4.3% false positives.
 - **Size.** 61 leaky files reach |Sharpe| >= 1 on drift-free data; the largest clean twin
-  reaches 0.20. No tool finds 43 of the 61 at the site.
+  reaches 0.19. No tool finds 43 of the 61 at the site.
 - **Coverage.** No tool finds `same_bar`, `np_roll` or `argmax_param` at the site. These are
   gaps in form: PP010 fires once a `signal * returns` line exists, three tools catch a negative
   `np.roll`, and four catch a time-blind `GridSearchCV`
@@ -54,8 +54,9 @@ What stands out:
 - **Indirection.** Four of the seven tools lose more than half their score from L0 to L1, when
   a value passes through one local variable. monte-neo inlines constants and stays at 24/46.
   At L3 no tool separates the twins (0/46 each).
-- **Comparisons.** 16 of the 21 tool pairs pass p < 0.05 with McNemar over files. Files of one
-  template are correlated; 8 of 21 survive a sign-flip test over templates with Holm.
+- **Comparisons.** At the site, 16 of the 21 tool pairs pass p < 0.05 with McNemar over files.
+  Files of one template are correlated; 8 of 21 survive a sign-flip test over templates with
+  Holm. For recall the counts are 15 and 6.
 
 Per-class heatmaps, per-level tables, sensitivity analyses and every false positive with
 file:line: [results/v1/scorecard.md](results/v1/scorecard.md).
@@ -107,7 +108,7 @@ run statically (no tool executes corpus code). No network or model calls at run 
 | `src/leakseed/score.py`, `stats.py`, `report.py` | estimands, intervals, tests, scorecard |
 | `corpus/v1/` | frozen corpus: `files/`, `manifest.jsonl`, `VERSION.json` |
 | `corpus/probes/` | hand-written pairs for rules the v1 style cannot trigger |
-| `results/v1/` | oracle verdicts, tool findings, impact, `summary.json`, `scorecard.md`, `probes.md` |
+| `results/v1/` | oracle verdicts, tool findings, impact, `summary.json`, `scorecard.md`, `probes.md`, and `corpus.json`, which ties the directory to its corpus |
 | `results/fresh/` | scorecards of two fresh generator seeds |
 | `docs/DESIGN.md` | taxonomy, oracle soundness, statistics, threat model, tool vetting, prior art |
 | `docs/upstream/` | draft issues for the linters (not filed) |

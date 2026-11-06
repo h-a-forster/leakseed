@@ -1201,121 +1201,121 @@
    "argmax_param": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.14,
-    "median_abs_clean": 0.096,
-    "median_abs_leaky": 0.112,
+    "max_abs_leaky": 0.136,
+    "median_abs_clean": 0.094,
+    "median_abs_leaky": 0.106,
     "pairs": 8
    },
    "asof_forward": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.103,
-    "median_abs_clean": 0.15,
-    "median_abs_leaky": 0.064,
+    "max_abs_leaky": 0.108,
+    "median_abs_clean": 0.154,
+    "median_abs_leaky": 0.07,
     "pairs": 12
    },
    "backfill_interpolate": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.033,
-    "median_abs_clean": 0.031,
-    "median_abs_leaky": 0.026,
+    "max_abs_leaky": 0.032,
+    "median_abs_clean": 0.028,
+    "median_abs_leaky": 0.024,
     "pairs": 16
    },
    "centered_rolling": {
     "material": 9,
     "material_found": 5,
-    "max_abs_leaky": 19.958,
-    "median_abs_clean": 0.056,
-    "median_abs_leaky": 6.433,
+    "max_abs_leaky": 19.956,
+    "median_abs_clean": 0.05,
+    "median_abs_leaky": 6.431,
     "pairs": 16
    },
    "full_sample_scaling": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.599,
-    "median_abs_clean": 0.076,
-    "median_abs_leaky": 0.089,
+    "max_abs_leaky": 0.593,
+    "median_abs_clean": 0.079,
+    "median_abs_leaky": 0.088,
     "pairs": 16
    },
    "fundamentals_period_end": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.078,
-    "median_abs_clean": 0.018,
-    "median_abs_leaky": 0.035,
+    "max_abs_leaky": 0.117,
+    "median_abs_clean": 0.099,
+    "median_abs_leaky": 0.117,
     "pairs": 12
    },
    "groupby_transform": {
     "material": 0,
     "material_found": 0,
     "max_abs_leaky": 0.131,
-    "median_abs_clean": 0.051,
-    "median_abs_leaky": 0.082,
+    "median_abs_clean": 0.053,
+    "median_abs_leaky": 0.083,
     "pairs": 12
    },
    "negative_shift": {
     "material": 12,
     "material_found": 6,
-    "max_abs_leaky": 9.541,
-    "median_abs_clean": 0.033,
-    "median_abs_leaky": 6.755,
+    "max_abs_leaky": 9.539,
+    "median_abs_clean": 0.031,
+    "median_abs_leaky": 6.766,
     "pairs": 12
    },
    "np_roll": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.196,
-    "median_abs_clean": 0.076,
-    "median_abs_leaky": 0.076,
+    "max_abs_leaky": 0.194,
+    "median_abs_clean": 0.079,
+    "median_abs_leaky": 0.079,
     "pairs": 8
    },
    "resample_label": {
     "material": 8,
     "material_found": 1,
-    "max_abs_leaky": 13.758,
+    "max_abs_leaky": 13.762,
     "median_abs_clean": 0.012,
-    "median_abs_leaky": 10.258,
+    "median_abs_leaky": 10.263,
     "pairs": 12
    },
    "restatement_overwrite": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.101,
-    "median_abs_clean": 0.018,
-    "median_abs_leaky": 0.101,
+    "max_abs_leaky": 0.182,
+    "median_abs_clean": 0.099,
+    "median_abs_leaky": 0.182,
     "pairs": 8
    },
    "reversed_cumulative": {
     "material": 12,
     "material_found": 6,
-    "max_abs_leaky": 2.284,
-    "median_abs_clean": 0.106,
-    "median_abs_leaky": 2.284,
+    "max_abs_leaky": 2.415,
+    "median_abs_clean": 0.022,
+    "median_abs_leaky": 2.415,
     "pairs": 16
    },
    "same_bar": {
     "material": 20,
     "material_found": 0,
-    "max_abs_leaky": 16.29,
-    "median_abs_clean": 0.033,
-    "median_abs_leaky": 7.213,
+    "max_abs_leaky": 16.296,
+    "median_abs_clean": 0.035,
+    "median_abs_leaky": 7.21,
     "pairs": 20
    },
    "shuffled_split": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.114,
-    "median_abs_clean": 0.059,
-    "median_abs_leaky": 0.097,
+    "max_abs_leaky": 0.12,
+    "median_abs_clean": 0.061,
+    "median_abs_leaky": 0.096,
     "pairs": 8
    },
    "survivorship": {
     "material": 0,
     "material_found": 0,
-    "max_abs_leaky": 0.143,
-    "median_abs_clean": 0.026,
-    "median_abs_leaky": 0.058,
+    "max_abs_leaky": 0.091,
+    "median_abs_clean": 0.07,
+    "median_abs_leaky": 0.05,
     "pairs": 8
    }
   },
@@ -1330,7 +1330,7 @@
    "peekproof": 6
   },
   "material_pairs": 61,
-  "max_abs_clean": 0.196,
+  "max_abs_clean": 0.194,
   "threshold": 1.0
  },
  "mcnemar": [
@@ -9229,18 +9229,18 @@
      "rate": 0.0
     },
     "localisation": {
-     "hi": NaN,
+     "hi": null,
      "k": 0,
-     "lo": NaN,
+     "lo": null,
      "n": 0,
-     "rate": NaN
+     "rate": null
     },
     "localisation_exact": {
-     "hi": NaN,
+     "hi": null,
      "k": 0,
-     "lo": NaN,
+     "lo": null,
      "n": 0,
-     "rate": NaN
+     "rate": null
     },
     "paired": {
      "hi": 0.0,
@@ -10163,18 +10163,18 @@
      "rate": 0.0
     },
     "localisation": {
-     "hi": NaN,
+     "hi": null,
      "k": 0,
-     "lo": NaN,
+     "lo": null,
      "n": 0,
-     "rate": NaN
+     "rate": null
     },
     "localisation_exact": {
-     "hi": NaN,
+     "hi": null,
      "k": 0,
-     "lo": NaN,
+     "lo": null,
      "n": 0,
-     "rate": NaN
+     "rate": null
     },
     "paired": {
      "hi": 0.0,
@@ -10210,18 +10210,18 @@
      "rate": 0.0
     },
     "localisation": {
-     "hi": NaN,
+     "hi": null,
      "k": 0,
-     "lo": NaN,
+     "lo": null,
      "n": 0,
-     "rate": NaN
+     "rate": null
     },
     "localisation_exact": {
-     "hi": NaN,
+     "hi": null,
      "k": 0,
-     "lo": NaN,
+     "lo": null,
      "n": 0,
-     "rate": NaN
+     "rate": null
     },
     "paired": {
      "hi": 0.0,
@@ -10259,26 +10259,12 @@
    "n": 184,
    "rate": 0.3641304347826087
   },
-  "localisation": {
-   "hi": 0.0,
-   "k": 0,
-   "lo": 0.0,
-   "n": 121,
-   "rate": 0.0
-  },
-  "localisation_exact": {
-   "hi": 0.7222222222222222,
-   "k": 73,
-   "lo": 0.4690265486725664,
-   "n": 121,
-   "rate": 0.6033057851239669
-  },
   "paired": {
-   "hi": 0.3967471227621482,
-   "k": 54,
-   "lo": 0.18478260869565216,
+   "hi": 0.48936170212765956,
+   "k": 70,
+   "lo": 0.2712765957446808,
    "n": 184,
-   "rate": 0.29347826086956524
+   "rate": 0.3804347826086957
   },
   "paired_site": {
    "hi": 0.505,
@@ -10287,14 +10273,12 @@
    "n": 184,
    "rate": 0.3967391304347826
   },
-  "paired_site_class_mean": 0.39166666666666666,
   "recall": {
    "hi": 0.7978723404255319,
    "k": 121,
    "lo": 0.515298469387755,
    "n": 184,
    "rate": 0.657608695652174
-  },
-  "recall_class_mean": 0.6819444444444444
+  }
  }
 }

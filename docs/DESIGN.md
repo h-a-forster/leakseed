@@ -14,6 +14,9 @@ is verified by executing it under a causality oracle (section 3). For each tool:
 | paired at the site | P(a flag on a site line of the leaky file, none on those lines or its own site lines in the twin) | twin pair |
 | localisation | P(some flag within ±2 lines of a site line \| leaky file flagged) | flagged leaky file |
 
+The scorecard's any-linter row is "at least one tool, on its own": each estimand is computed per
+tool and the hits are joined with OR, so its columns compare like the tools' own.
+
 "Flag" means at least one finding from the rules the tool documents as look-ahead or leakage
 rules, at any severity. For backtest-audit that excludes STAT001 (Sharpe without
 annualisation) and STAT002 (no transaction costs). Two sensitivity tables change that
@@ -118,12 +121,13 @@ describe. Three modes:
 All modes negate index membership after t. The file is **leaky** if for some (t, mode) the
 held positions in rows 0..t + 1 differ (relative tolerance 1e-9, NaN equal to NaN).
 Otherwise it is **clean**. Each mode draws 16 cuts stratified from the later of 5% of n and
-the first row with output up to n - 2, with a seed derived from the file id. Defaults:
-n = 5,000 business days, 6 assets, data seed 2026.
+the row before the first output (a cut t compares rows up to t + 1) up to n - 2, with a seed
+derived from the file id. Defaults: n = 5,000 business days, 6 assets, data seed 2026.
 
-The oracle refuses to give a verdict (and fails the build) when the output is malformed,
-differs between two runs on the same data, is never finite, or never moves under any
-perturbation. A check that cannot fail is not evidence.
+The oracle refuses to give a verdict (and fails the build) when the output is malformed (not
+one row per date, or neither one column nor one per asset), differs between two runs on the
+same data, is never finite, or never moves under any perturbation. A check that cannot fail
+is not evidence.
 
 ### 3.3 Soundness and limits
 
@@ -135,15 +139,19 @@ perturbation. A check that cannot fail is not evidence.
   (`test_events_of_day_t_are_known_at_its_close`). All 368 labels held after the fix.
 - **Clean verdicts are not proofs.** The oracle tries 48 (t, mode) pairs per file. A leak
   can hide when it appears only for a few t (each mode's grid is stratified, so a window
-  wider than two strata, about 12% of the sample, always contains a cut; narrower windows
-  are hit with probability that grows with their width), when its effect is absorbed (a sign
-  that does not flip, an argmax that does not move), or when it shows up only in outputs the
-  script masks. Tuned parameters are the hardest case, and twice a leaky argmax file passed
+  wider than two strata, about 12% of the sample on the default grid and less when the grid
+  starts later, always contains a cut; narrower windows are hit with probability that grows
+  with their width), when its effect is absorbed (a sign that does not flip, an argmax that
+  does not move), or when it shows up only in outputs the script masks. Tuned parameters are the hardest case, and twice a leaky argmax file passed
   as clean on another data seed. The regime mode came from the first time. The second came
   from a grid over the whole sample: scripts that trade only the second half had half their
-  cuts before the first output, where nothing can differ. The grid now starts at the first
-  output. `tests/test_corpus_oracle.py` keeps one file from each case. Replication below is
-  what stands behind the clean labels, not the fixed grid alone.
+  cuts before the first output, where nothing can differ. The grid now starts just before the
+  first output. `tests/test_corpus_oracle.py` keeps one file from each case. Replication
+  below is what stands behind the clean labels, not the fixed grid alone.
+- **The regime mode in the committed verdicts.** Modes run in a fixed order and stop at the
+  first witness. On data seed 2026 every leak falls to values (180) or availability (4), so
+  regime runs only on clean files there and `results/v1/oracle.jsonl` holds no regime witness.
+  What shows it is needed is the data-seed-7 case in `tests/test_corpus_oracle.py`.
 - **Selection by the oracle.** A file enters the corpus only if the oracle agrees with its
   label, so v1 contains leaks a differential test can witness. arXiv:2607.04958 builds
   leaks a two-run differential detector misses: at unsampled times, behind thresholds the
@@ -205,8 +213,9 @@ perturbation. A check that cannot fail is not evidence.
   column into a feature, or fits a model at import time, so LA006, PP009, LG005 and similar
   rules have nothing to match.
 - **Adapters.** Each adapter maps the tool's own JSON. Parsing is tested on outputs recorded
-  from the pinned versions (`tests/fixtures/tools`). A tool error or unparseable file fails
-  the run instead of counting as "no finding".
+  from the pinned versions (`tests/fixtures/tools`), and each tool is run on the same files to
+  reproduce them. A tool error or unparseable file fails the run instead of counting as "no
+  finding".
 
 ## 6. Tools: vetting and pinning
 
@@ -237,11 +246,13 @@ show that a general linter flags nothing here (the corpus is ruff-clean by const
 
 The oracle says whether a script sees the future, not how much that is worth.
 `leakseed impact` runs every file on five data seeds and records the annualised Sharpe of
-holding its positions (`results/v1/impact.jsonl`). Prices in the synthetic data have no drift
-and no autocorrelation, so a causal script has an expected Sharpe of zero. A leak can earn
-far from zero with either sign, depending on which way the template trades, so the table
-uses |Sharpe|. A leaky file is *material* at |Sharpe| >= 1, five times the largest clean
-twin.
+holding its positions on log returns (`results/v1/impact.jsonl`). Log prices in the synthetic
+data are a random walk without drift, so each step has mean zero given the past and a causal
+position earns zero in expectation. Simple returns would break that: their mean is half the
+variance, which for an always-long position across the six assets is a Sharpe of about
+sigma * sqrt(6 * 252) / 2, or 0.3. A leak can earn far from zero with either sign, depending on
+which way the template trades, so the table uses |Sharpe|. A leaky file is *material* at
+|Sharpe| >= 1, five times the largest clean twin.
 
 Events and fundamentals are independent of prices in this data, so leaks through those
 channels cannot show here. A low number for a price-based class does mean the leak is small
@@ -266,3 +277,16 @@ No public, independent, multi-tool evaluation of Python look-ahead linters was f
 - **Seeded-bug corpora** (Defects4J, BugsInPy) are not about time order.
 - **Yang et al., ASE 2022** detect train/test leakage in notebooks. They have no focus on
   time-series look-ahead and no seeded corpus with clean twins.
+
+## 9. Audit findings left as they are (2026-11-06)
+
+Two independent audits ran on this repository; what they found is fixed, except for these.
+
+- **`PYTHONIOENCODING` and `PYTHONUTF8` in `run_tool` look dead for the `python -I` drivers.**
+  True, and those drivers print ASCII JSON. The four console-script tools do read the settings,
+  so one environment for every tool stays the simpler code.
+- **The sdist includes `.gitignore`.** One small text file that changes nothing about the build.
+- **The full study does not run in CI.** A test now rebuilds `summary.json` from the committed
+  inputs and compares every number but the bootstrap bounds. Re-running the oracle and the
+  linters stays a manual `git diff results/`: CI minutes are metered while the repository is
+  private, and the byte-for-byte promise holds on one platform only.

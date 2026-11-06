@@ -7,15 +7,20 @@ from leakseed.oracle import as_matrix
 
 
 def test_sharpe_on_a_hand_computed_case():
-    close = np.array([[100.0], [110.0], [99.0], [108.9]])  # returns +10%, -10%, +10%
+    close = np.exp(np.array([[0.0], [0.1], [0.0], [0.1]]))  # log returns +0.1, -0.1, +0.1
     assert sharpe(np.zeros((4, 1)), close) == 0.0  # flat: no variance in the pnl
     positions = np.array([[0.0], [1.0], [1.0], [1.0]])
     pnl = np.array([0.1, -0.1, 0.1])
     assert sharpe(positions, close) == pytest.approx(pnl.mean() / pnl.std() * np.sqrt(252))
 
 
+def test_a_long_position_on_a_driftless_walk_earns_nothing():
+    close = np.exp(0.02 * (np.arange(101) % 2))[:, None]  # log returns +0.02, -0.02, ...
+    assert sharpe(np.ones_like(close), close) == pytest.approx(0.0, abs=1e-9)
+
+
 def test_missing_positions_and_prices_are_flat_and_one_column_is_held_everywhere():
-    close = np.array([[100.0, 100.0], [110.0, np.nan], [99.0, np.nan], [108.9, np.nan]])
+    close = np.exp(np.array([[0.0, 0.0], [0.1, np.nan], [0.0, np.nan], [0.1, np.nan]]))
     positions = np.array([[np.nan], [1.0], [1.0], [np.inf]])
     pnl = np.array([0.05, -0.05, 0.0])
     assert sharpe(positions, close) == pytest.approx(pnl.mean() / pnl.std() * np.sqrt(252))

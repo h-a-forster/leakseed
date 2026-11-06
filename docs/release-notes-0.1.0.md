@@ -1,6 +1,6 @@
 # leakseed 0.1.0 release notes
 
-First release. Results are in [results/v1/scorecard.md](../results/v1/scorecard.md) and
+First release, not tagged yet. Results are in [results/v1/scorecard.md](../results/v1/scorecard.md) and
 `results/fresh/`.
 
 ## What it does
@@ -35,3 +35,16 @@ Each of these changed an earlier result, and each has a test that fails without 
   half, and a leaky argmax file passed as clean on one data seed.
 - At L3 the dead leaky branch counted as a hit at the site unless the twin check covered both
   files' site lines.
+- Sharpe used simple returns, whose mean is positive on a driftless log-price walk, so long
+  positions showed a small gain. It now uses log returns. 61 leaky files stay material, and the
+  largest clean twin moves from 0.20 to 0.19.
+- The any-linter row took paired discrimination from the union of flags while its other columns
+  were an OR over tools. All columns are now an OR over tools: 54/184 becomes 70/184.
+
+## Other fixes from the audits
+
+- The build needs `hatchling>=1.26`: the PEP 639 `license-files` list fails on older versions.
+- `verify`, `impact`, `score` and `report` refuse a results directory that belongs to another
+  corpus (`corpus.json`), so a forgotten `--out` cannot overwrite `results/v1`.
+- `summary.json` is strict JSON: an empty rate is `null`, not `NaN`.
+- The oracle refuses an output that has neither one column nor one per asset.

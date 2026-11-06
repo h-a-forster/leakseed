@@ -113,5 +113,7 @@ def test_refuses_nondeterministic_vacuous_and_misshapen_outputs(data):
         check(lambda d: np.ones(len(d["close"])), data)
     with pytest.raises(OracleError, match="one row per date"):
         check(lambda d: d["close"].to_numpy()[:-1], data)
+    with pytest.raises(OracleError, match="columns"):
+        check(lambda d: d["close"].iloc[:, :2].shift(1), data)
     with pytest.raises(OracleError, match="no finite"):
         check(lambda d: np.full(len(d["close"]), np.nan), data)

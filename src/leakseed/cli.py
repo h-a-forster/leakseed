@@ -15,13 +15,33 @@ from . import __version__
 from .adapters import ADAPTERS, get
 from .adapters.base import executable, findings_to_jsonl, run_tool
 from .data import PERTURB_MODES
-from .generate import V1_SEED, check_snapshot, read_manifest, write
+from .generate import V1_SEED, VERSION_FILE, CorpusError, check_snapshot, read_manifest, write
 from .impact import DATA_SEEDS, measure, write_impact
 from .oracle import DATA_SEED, verify, write_verdicts
 from .report import write_report
 
 DEFAULT_CORPUS = Path("corpus/v1")
 DEFAULT_RESULTS = Path("results/v1")
+RESULTS_STAMP = "corpus.json"  # which corpus a results directory belongs to
+
+
+def _check_results(corpus: Path, results: Path) -> str:
+    """Return the corpus manifest hash, refusing ``results`` if they belong to another corpus."""
+    version = json.loads((corpus / VERSION_FILE).read_text(encoding="utf-8"))
+    sha = version["manifest_sha256"]
+    stamp = results / RESULTS_STAMP
+    if stamp.is_file() and json.loads(stamp.read_text("utf-8"))["manifest_sha256"] != sha:
+        raise CorpusError(f"{results} holds results of another corpus than {corpus}; pass --out")
+    return sha
+
+
+def _claim_results(corpus: Path, results: Path) -> None:
+    """Tie ``results`` to ``corpus``. Every command that writes results calls this first."""
+    sha = _check_results(corpus, results)
+    results.mkdir(parents=True, exist_ok=True)
+    (results / RESULTS_STAMP).write_text(
+        json.dumps({"manifest_sha256": sha}, indent=1) + "\n", "utf-8", newline="\n"
+    )
 
 
 def _generate(args: argparse.Namespace) -> int:
@@ -41,6 +61,8 @@ def _verify(args: argparse.Namespace) -> int:
         pairs = sorted({tuple(sorted((r["id"], r["twin"]))) for r in manifest})
         chosen = random.Random(args.sample_seed).sample(pairs, min(args.sample, len(pairs)))
         ids = [i for pair in chosen for i in pair]
+    if args.out and not ids:
+        _claim_results(args.corpus, args.out)
     start = time.perf_counter()
     done = Counter()
 
@@ -74,6 +96,7 @@ def _verify(args: argparse.Namespace) -> int:
 
 
 def _impact(args: argparse.Namespace) -> int:
+    _claim_results(args.corpus, args.out)
     rows = measure(args.corpus, n=args.n, data_seeds=tuple(args.data_seeds))
     write_impact(args.out / "impact.jsonl", rows)
     print(
@@ -91,6 +114,7 @@ def _tool_version(name: str) -> str:
 def _score(args: argparse.Namespace) -> int:
     names = list(ADAPTERS) if args.tool == "all" else [args.tool]
     out = args.out
+    _claim_results(args.corpus, out)
     (out / "findings").mkdir(parents=True, exist_ok=True)
     meta_path = out / "tools.json"
     meta = json.loads(meta_path.read_text("utf-8")) if meta_path.is_file() else {}
@@ -114,6 +138,7 @@ def _score(args: argparse.Namespace) -> int:
 
 
 def _report(args: argparse.Namespace) -> int:
+    _check_results(args.corpus, args.results)
     summary = write_report(args.corpus, args.results, n_boot=args.bootstrap)
     for name, t in summary["tools"].items():
         p = t["primary"]

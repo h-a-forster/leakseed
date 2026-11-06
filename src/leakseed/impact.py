@@ -1,10 +1,11 @@
 """Economic size of each leak: the Sharpe ratio a script earns on driftless synthetic data.
 
-Prices in :func:`leakseed.data.make_data` have no drift and no autocorrelation, so a causal
-strategy has an expected Sharpe of zero and whatever a leaky file earns above its clean twin
-comes from the leak. Events and fundamentals are independent of prices there, so leaks through
-those channels show no gain by construction; the oracle, not this table, establishes that they
-are leaks.
+Log prices in :func:`leakseed.data.make_data` are a driftless random walk, so a causal position
+earns nothing in expectation on log returns, and whatever a leaky file earns above its clean
+twin comes from the leak. (Simple returns would not do: their mean is half the variance, so a
+long position would show a positive Sharpe.) Events and fundamentals are independent of prices
+there, so leaks through those channels show no gain by construction; the oracle, not this table,
+establishes that they are leaks.
 """
 
 from __future__ import annotations
@@ -23,12 +24,13 @@ BARS_PER_YEAR = 252
 
 
 def sharpe(positions: np.ndarray, close: np.ndarray) -> float:
-    """Annualised Sharpe of holding ``positions`` over each bar, equally across assets.
+    """Annualised Sharpe of log returns from holding ``positions`` over each bar.
 
-    One column of positions is held in every asset. Missing positions or prices are flat.
+    Assets are weighted equally. One column of positions is held in every asset. Missing
+    positions or prices are flat.
     """
     returns = np.full_like(close, np.nan)
-    returns[1:] = close[1:] / close[:-1] - 1.0
+    returns[1:] = np.log(close[1:] / close[:-1])
     held = np.nan_to_num(positions, posinf=0.0, neginf=0.0)
     pnl = (held * np.nan_to_num(returns)).mean(axis=1)[1:]
     sd = pnl.std()

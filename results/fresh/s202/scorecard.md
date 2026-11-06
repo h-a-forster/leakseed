@@ -15,7 +15,9 @@ Intervals: pooled rates use a cluster bootstrap over templates (10000 resamples,
 | monte-neo | 0.54.0 | 57.6% [44.6, 71.1] (106/184) | 31.5% [19.1, 46.4] (58/184) | 26.1% [15.9, 36.0] (48/184) | 33.2% [22.9, 43.4] (61/184) |
 | nofuturedata | 0.5.0.dev0+fb46880 | 14.1% [6.7, 23.8] (26/184) | 2.2% [0.5, 4.5] (4/184) | 12.0% [6.1, 19.2] (22/184) | 12.0% [6.1, 19.2] (22/184) |
 | ruff-defaults | 0.17.1 | 0.0% [0.0, 0.0] (0/184) | 0.0% [0.0, 0.0] (0/184) | 0.0% [0.0, 0.0] (0/184) | 0.0% [0.0, 0.0] (0/184) |
-| any linter | - | 65.8% [51.5, 79.8] (121/184) | 36.4% [23.3, 51.6] (67/184) | 29.3% [18.5, 39.7] (54/184) | 39.7% [28.6, 50.5] (73/184) |
+| any linter | - | 65.8% [51.5, 79.8] (121/184) | 36.4% [23.3, 51.6] (67/184) | 38.0% [27.1, 48.9] (70/184) | 39.7% [28.6, 50.5] (73/184) |
+
+In the any-linter row, each column counts a file or pair that at least one tool scores on its own.
 
 ## Balanced over classes
 
@@ -182,25 +184,25 @@ Pairs with a flag on a site line of the leaky file and none at the same place in
 
 ## Size of the leak: |Sharpe| on drift-free data, by class
 
-Annualised, mean over the data seeds; the sign only says which way the template trades. Material: |Sharpe| of the leaky file >= 1 (largest clean twin: 0.20). Found: paired at the site by at least one linter. Events and fundamentals are independent of prices in this data, so those classes cannot show a gain here.
+Annualised on log returns, mean over the data seeds; the sign only says which way the template trades. Material: |Sharpe| of the leaky file >= 1 (largest clean twin: 0.19). Found: paired at the site by at least one linter. Events and fundamentals are independent of prices in this data, so those classes cannot show a gain here.
 
 | Class | Median leaky | Largest leaky | Median clean | Material | Found |
 |---|---|---|---|---|---|
 | same_bar | 7.21 | 11.42 | 0.04 | 20/20 | 0/20 |
-| negative_shift | 6.77 | 10.31 | 0.04 | 12/12 | 6/12 |
-| centered_rolling | 5.66 | 19.96 | 0.06 | 8/16 | 4/8 |
-| full_sample_scaling | 0.09 | 0.60 | 0.08 | 0/16 | 0/0 |
-| backfill_interpolate | 0.03 | 0.03 | 0.03 | 0/16 | 0/0 |
+| negative_shift | 6.76 | 10.32 | 0.04 | 12/12 | 6/12 |
+| centered_rolling | 5.66 | 19.96 | 0.05 | 8/16 | 4/8 |
+| full_sample_scaling | 0.08 | 0.59 | 0.08 | 0/16 | 0/0 |
+| backfill_interpolate | 0.02 | 0.03 | 0.03 | 0/16 | 0/0 |
 | resample_label | 10.26 | 13.76 | 0.01 | 8/12 | 1/8 |
-| asof_forward | 0.06 | 0.10 | 0.15 | 0/12 | 0/0 |
-| fundamentals_period_end | 0.04 | 0.08 | 0.02 | 0/12 | 0/0 |
-| restatement_overwrite | 0.10 | 0.10 | 0.02 | 0/8 | 0/0 |
-| survivorship | 0.03 | 0.07 | 0.05 | 0/8 | 0/0 |
-| shuffled_split | 0.10 | 0.11 | 0.06 | 0/8 | 0/0 |
+| asof_forward | 0.07 | 0.11 | 0.15 | 0/12 | 0/0 |
+| fundamentals_period_end | 0.12 | 0.12 | 0.10 | 0/12 | 0/0 |
+| restatement_overwrite | 0.18 | 0.18 | 0.10 | 0/8 | 0/0 |
+| survivorship | 0.05 | 0.09 | 0.09 | 0/8 | 0/0 |
+| shuffled_split | 0.10 | 0.12 | 0.06 | 0/8 | 0/0 |
 | groupby_transform | 0.08 | 0.13 | 0.06 | 0/12 | 0/0 |
-| np_roll | 0.08 | 0.20 | 0.08 | 0/8 | 0/0 |
-| reversed_cumulative | 2.28 | 2.28 | 0.11 | 12/16 | 6/12 |
-| argmax_param | 0.13 | 0.14 | 0.09 | 0/8 | 0/0 |
+| np_roll | 0.08 | 0.19 | 0.08 | 0/8 | 0/0 |
+| reversed_cumulative | 2.42 | 2.42 | 0.02 | 12/16 | 6/12 |
+| argmax_param | 0.12 | 0.14 | 0.08 | 0/8 | 0/0 |
 
 Material leaks found at the site, of 60:
 

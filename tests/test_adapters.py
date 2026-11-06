@@ -1,6 +1,7 @@
-"""Adapter parsing on outputs recorded from the pinned tools (tests/fixtures/tools)."""
+"""Adapters on the pinned tools and on outputs recorded from them (tests/fixtures/tools)."""
 
 import json
+import shutil
 from importlib import metadata
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from leakseed.adapters import AdapterError, Finding, get
 from leakseed.adapters.base import norm_path
 
 FIXTURES = Path(__file__).parent / "fixtures" / "tools"
+V1 = Path(__file__).resolve().parents[1] / "corpus" / "v1"
 NEG, SPLIT, FILL, SCALER = (
     "files/f505ade6863.py",
     "files/f8b0d0eb31c.py",
@@ -44,6 +46,25 @@ EXPECTED = {
 def test_recorded_outputs_parse_to_findings(tool):
     raw = _recorded(tool)
     assert {Finding(f.path, f.line, f.rule) for f in get(tool).parse(raw)} == EXPECTED[tool]
+
+
+@pytest.fixture(scope="module")
+def recorded_corpus(tmp_path_factory):
+    corpus = tmp_path_factory.mktemp("corpus")
+    (corpus / "files").mkdir()
+    for path in (NEG, SPLIT, FILL, SCALER):
+        shutil.copy(V1 / path, corpus / path)
+    return corpus
+
+
+@pytest.mark.parametrize("tool", sorted(EXPECTED))
+def test_each_tool_runs_and_reproduces_its_recorded_output(tool, recorded_corpus):
+    adapter = get(tool)
+    assert adapter.run(recorded_corpus)[0] == sorted(set(adapter.parse(_recorded(tool))))
+
+
+def test_ruff_baseline_runs_clean(recorded_corpus):
+    assert get("ruff-defaults").run(recorded_corpus)[0] == []
 
 
 @pytest.mark.parametrize(

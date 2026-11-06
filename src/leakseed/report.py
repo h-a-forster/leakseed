@@ -10,12 +10,21 @@ from statistics import median
 
 from .adapters import ADAPTERS, get
 from .generate import VERSION_FILE, read_manifest, read_source
-from .score import cells, estimands, file_outcomes, read_findings, site_hit, window_share
+from .score import (
+    cells,
+    estimands,
+    file_outcomes,
+    pair_hit,
+    read_findings,
+    site_hit,
+    union_estimands,
+    window_share,
+)
 from .stats import clopper_pearson, cluster_sign_test, holm, mcnemar_exact
 from .templates import CLASSES, LEVELS, LIBS
 
 BASELINE = "ruff-defaults"
-# A leaky file is material when its annualised |Sharpe| on drift-free data reaches this.
+# A leaky file is material when its annualised |Sharpe| on drift-free log returns reaches this.
 MATERIAL = 1.0
 
 
@@ -108,22 +117,12 @@ def build_summary(corpus: Path, results: Path, *, n_boot: int = 10_000, seed: in
         }
         for cls in CLASSES
     }
-    union = {
-        r["id"]: any(outcomes_by_tool[t][r["id"]]["flagged"] for t in linters) for r in manifest
-    }
     union_site = {
         r["id"]: any(site_hit(outcomes_by_tool[t], r) for t in linters) for r in leak_rows
     }
-    union_outcomes = {
-        r["id"]: {
-            "flagged": union[r["id"]],
-            "localised": False,
-            "exact": union_site.get(r["id"], False),  # at least one tool, on its own
-            "either": False,
-        }
-        for r in manifest
-    }
-    union_est = estimands(manifest, union_outcomes, n_boot=n_boot)
+    union_est = union_estimands(
+        manifest, [outcomes_by_tool[t] for t in linters], n_boot=n_boot, seed=seed
+    )
 
     fps = []
     for name in linters:
@@ -212,12 +211,8 @@ def _paired_cells(leak_rows, outcomes, key, *, at_site=False):
     out = {}
     for value in sorted({r[key] for r in leak_rows}):
         rows = [r for r in leak_rows if r[key] == value]
-        k = sum(
-            site_hit(outcomes, r)
-            if at_site
-            else outcomes[r["id"]]["flagged"] and not outcomes[r["twin"]]["flagged"]
-            for r in rows
-        )
+        hit = site_hit if at_site else pair_hit
+        k = sum(hit(outcomes, r) for r in rows)
         lo, hi = clopper_pearson(k, len(rows))
         out[value] = {"k": k, "n": len(rows), "rate": k / len(rows), "lo": lo, "hi": hi}
     return out
@@ -274,6 +269,8 @@ def render_markdown(s: dict) -> str:
         f"| any linter | - | {_fmt(u['recall'])} | {_fmt(u['fpr'])} | "
         f"{_fmt(u['paired'])} | {_fmt(u['paired_site'])} |"
     )
+    out += ["", "In the any-linter row, each column counts a file or pair that at least one tool "
+            "scores on its own."]  # fmt: skip
     out += ["", "## Balanced over classes", ""]
     out.append("Pooled rates weight classes by their file counts. These are means of class rates.")
     out.append("")
@@ -380,7 +377,8 @@ def render_markdown(s: dict) -> str:
     imp = s["impact"]
     out += ["", "## Size of the leak: |Sharpe| on drift-free data, by class", ""]
     out.append(
-        "Annualised, mean over the data seeds; the sign only says which way the template trades. "
+        "Annualised on log returns, mean over the data seeds; the sign only says which way the "
+        "template trades. "
         f"Material: |Sharpe| of the leaky file >= {imp['threshold']:g} (largest clean twin: "
         f"{imp['max_abs_clean']:.2f}). Found: paired at the site by at least one linter. "
         "Events and fundamentals are independent of prices in this data, so those classes "
@@ -440,7 +438,7 @@ def render_markdown(s: dict) -> str:
 def write_report(corpus: Path, results: Path, *, n_boot: int = 10_000) -> dict:
     summary = build_summary(Path(corpus), Path(results), n_boot=n_boot)
     (Path(results) / "summary.json").write_text(
-        json.dumps(summary, indent=1, sort_keys=True, default=float) + "\n",
+        json.dumps(summary, indent=1, sort_keys=True, default=float, allow_nan=False) + "\n",
         encoding="utf-8",
         newline="\n",
     )

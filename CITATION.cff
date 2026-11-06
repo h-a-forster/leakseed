@@ -11,7 +11,6 @@ authors:
 repository-code: "https://github.com/h-a-forster/leakseed"
 license: MIT
 version: 0.1.0
-date-released: "2026-11-06"
 keywords:
   - backtesting
   - look-ahead bias

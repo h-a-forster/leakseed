@@ -4,8 +4,8 @@
 
 ## Waiting on me
 
-- Decide whether leakseed goes public; on public release, tag v0.1.0 and freeze v1 for real.
-- Add REPORT.md to the repository from the text in the 2026-11-06 workflow result (the workflow's subagent could not write report files).
+- Decide whether leakseed goes public; on public release, tag v0.1.0, add `date-released` to CITATION.cff and freeze v1 for real.
+- Add REPORT.md to the repository from the text in the 2026-11-06 workflow result, with the post-audit numbers from `results/v1/scorecard.md` (the workflow's subagent could not write report files).
 
 ## Decided
 

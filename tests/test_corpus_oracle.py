@@ -11,12 +11,14 @@ from leakseed.oracle import check, load_run, verify
 V1 = Path(__file__).resolve().parents[1] / "corpus" / "v1"
 
 
-def test_oracle_confirms_labels_on_one_pair_per_class():
+def test_oracle_confirms_labels_on_one_pair_per_template():
     manifest = read_manifest(V1)
     rng = random.Random(0)
     ids = []
-    for cls in sorted({r["cls"] for r in manifest}):
-        leak = rng.choice([r for r in manifest if r["cls"] == cls and r["label"] == "leak"])
+    for template in sorted({r["template"] for r in manifest}):
+        leak = rng.choice(
+            [r for r in manifest if r["template"] == template and r["label"] == "leak"]
+        )
         ids += [leak["id"], leak["twin"]]
     verdicts = verify(V1, n=1500, n_t=8, ids=ids)
     assert len(verdicts) == len(ids)

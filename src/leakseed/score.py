@@ -69,10 +69,25 @@ def site_hit(outcomes: dict, row: dict) -> bool:
     return outcomes[row["id"]]["exact"] and not outcomes[row["twin"]]["either"]
 
 
+def pair_hit(outcomes: dict, row: dict) -> bool:
+    """For a leaky ``row``: the file is flagged and its twin is not."""
+    return outcomes[row["id"]]["flagged"] and not outcomes[row["twin"]]["flagged"]
+
+
 def window_share(site: list[int], code_lines: list[int]) -> float:
     """Share of a file's code lines within ``TOLERANCE`` of a site line."""
     near = sum(any(abs(c - s) <= TOLERANCE for s in site) for c in code_lines)
     return near / len(code_lines)
+
+
+def _pooled(units: list[dict], value, n_boot: int, seed: int) -> dict:
+    """``value`` over ``units`` with a cluster-bootstrap interval; ``None`` without units."""
+    if not units:
+        return {"k": 0, "n": 0, "rate": None, "lo": None, "hi": None}
+    y = np.array([value(r) for r in units], dtype=float)
+    g = np.array([r["template"] for r in units])
+    est, lo, hi = cluster_bootstrap(y, g, n_boot=n_boot, seed=seed)
+    return {"k": int(y.sum()), "n": int(y.size), "rate": est, "lo": lo, "hi": hi}
 
 
 def estimands(
@@ -92,10 +107,7 @@ def estimands(
     clean = [r for r in manifest if r["label"] == "clean"]
 
     def pooled(units: list[dict], value) -> dict:
-        y = np.array([value(r) for r in units], dtype=float)
-        g = np.array([r["template"] for r in units])
-        est, lo, hi = cluster_bootstrap(y, g, n_boot=n_boot, seed=seed)
-        return {"k": int(y.sum()), "n": int(y.size), "rate": est, "lo": lo, "hi": hi}
+        return _pooled(units, value, n_boot, seed)
 
     flagged_leak = [r for r in leak if outcomes[r["id"]]["flagged"]]
     class_rates: dict[str, list[list[float]]] = defaultdict(list)
@@ -113,12 +125,31 @@ def estimands(
         "paired_site_class_mean": float(class_means[1]),
         "recall": pooled(leak, lambda r: outcomes[r["id"]]["flagged"]),
         "fpr": pooled(clean, lambda r: outcomes[r["id"]]["flagged"]),
-        "paired": pooled(
-            leak, lambda r: outcomes[r["id"]]["flagged"] and not outcomes[r["twin"]]["flagged"]
-        ),
+        "paired": pooled(leak, lambda r: pair_hit(outcomes, r)),
         "paired_site": pooled(leak, lambda r: site_hit(outcomes, r)),
         "localisation": pooled(flagged_leak, lambda r: outcomes[r["id"]]["localised"]),
         "localisation_exact": pooled(flagged_leak, lambda r: outcomes[r["id"]]["exact"]),
+    }
+
+
+def union_estimands(
+    manifest: list[dict], per_tool: list[dict], *, n_boot: int = 10_000, seed: int = 0
+) -> dict:
+    """Pooled rates of "at least one tool, on its own": each is an OR over the tools' hits."""
+    leak = [r for r in manifest if r["label"] == "leak"]
+    clean = [r for r in manifest if r["label"] == "clean"]
+
+    def rate(units: list[dict], hit) -> dict:
+        return _pooled(units, lambda r: any(hit(o, r) for o in per_tool), n_boot, seed)
+
+    def flagged(outcomes: dict, row: dict) -> bool:
+        return outcomes[row["id"]]["flagged"]
+
+    return {
+        "recall": rate(leak, flagged),
+        "fpr": rate(clean, flagged),
+        "paired": rate(leak, pair_hit),
+        "paired_site": rate(leak, site_hit),
     }
 
 

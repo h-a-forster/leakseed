@@ -110,6 +110,8 @@ def check(
         base = as_matrix(run(copy_data(data)), dates)
         if not same(base, as_matrix(run(copy_data(data)), dates)):
             raise OracleError("output differs between two runs on the same data")
+        if base.shape[1] not in (1, data["close"].shape[1]):
+            raise OracleError(f"output has {base.shape[1]} columns, not 1 or one per asset")
         if not np.isfinite(base).any():
             raise OracleError("output has no finite values")
         runs, responsive = 2, False

@@ -25,7 +25,9 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
 - A new tool is read as text before it is installed or run (DESIGN.md, section 6) and pinned
   in the `tools` group. Tool failures raise; they never count as "no finding".
 - Results under `results/` are generated; never edit them. `oracle.jsonl`, `findings/` and
-  `impact.jsonl` are reproducible byte for byte on one platform.
+  `impact.jsonl` are reproducible byte for byte on one platform. Each results directory has a
+  `corpus.json` with its corpus's manifest hash, and the commands refuse to mix two corpora
+  there, so scratch corpora need their own `--out`.
 - No model or network calls at run time.
 
 ## Architecture map
@@ -44,7 +46,7 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
 | `scripts/probes.py` | runs the linters over `corpus/probes`, writes `results/v1/probes.md` |
 | `corpus/v1/` | frozen corpus |
 | `corpus/probes/` | hand-written pairs for rules the v1 style cannot trigger; no rates from these |
-| `results/v1/` | oracle verdicts, findings, impact, summary, scorecard, probes |
+| `results/v1/` | oracle verdicts, findings, impact, summary, scorecard, probes, corpus stamp |
 | `results/fresh/` | scorecards of two fresh generator seeds (their corpora regenerate from the seed) |
 | `docs/upstream/` | draft issues for the linters, not filed |
 
@@ -52,7 +54,7 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
 
 ```sh
 uv sync
-uv run pytest                         # about 2 minutes, offline
+uv run pytest                         # under a minute, offline
 uv run ruff check .
 uv run ruff format --check .
 uv lock --check
