@@ -40,6 +40,10 @@ that fires on code the twins share scores nothing. It is the measure to read.
 | ruff defaults (null) | 0.17.1 | 0.0% (0/184) | 0.0% (0/184) | 0.0% (0/184) |
 | any linter | - | 39.7% [28.6, 50.5] (73/184) | 65.8% [51.5, 79.8] (121/184) | 36.4% [23.3, 51.6] (67/184) |
 
+The *any linter* row means at least one tool on its own for each case, not the result of running
+all seven and OR-ing their flags; the OR of all seven gives 67/184 paired at the site and 54/184
+paired discrimination, against the row's 73 and the scorecard's 70.
+
 What stands out:
 
 - **Noise.** monte-neo leads every other tool at the site (Holm-adjusted template p from

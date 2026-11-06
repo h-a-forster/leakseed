@@ -259,10 +259,17 @@ channels cannot show here. A low number for a price-based class does mean the le
 in this script: `np_roll` wraps only the first rows, and a full-sample demean moves a slow
 signal little. It says nothing about the same leak with a stronger signal.
 
-## 8. Prior art (checked 2026-11-06)
+## 8. Prior art (checked 2026-11-06, arXiv:2609.28090 added 2026-11-07)
 
 No public, independent, multi-tool evaluation of Python look-ahead linters was found.
+leakseed's novelty claim is that it evaluates linters independently, with labels checked by
+running the code.
 
+- **Closest neighbour: "Can LLMs Catch a Rigged Backtest? A Clean-Control Calibration
+  Benchmark"** (Ulesov, Smirnov, Ibrahim and Bobovnikov, arXiv:2609.28090, Sep 2026). It pairs
+  flawed backtests with matched clean controls and scores false positives, as leakseed does.
+  But it tests LLM auditors, on 96 items and eight flaw classes, and it evaluates no linter; its
+  one rule-based entry is a baseline it treats as a sanity anchor.
 - **Tool authors' own sets.** leakguard ships 49 labelled snippets and calls its trading
   portion regression fixtures, not independent validation. nofuturedata ships a 31-case
   conformance corpus, 24 paired notebooks and 21 documented external cases, and says the
@@ -272,8 +279,8 @@ No public, independent, multi-tool evaluation of Python look-ahead linters was f
   corpus of 33 leaks and 20 clean cases over a typed pipeline DSL. It is not Python code, it
   evaluates no third-party linter, and at the time of writing the artifact is promised on
   acceptance.
-- **Look-Ahead-Bench** (arXiv:2601.13770) and related work measure what LLMs remember about
-  the future, not leaks in code.
+- **Look-Ahead-Bench** (arXiv:2601.13770) measures what LLMs remember about the future, not
+  leaks in code.
 - **Seeded-bug corpora** (Defects4J, BugsInPy) are not about time order.
 - **Yang et al., ASE 2022** detect train/test leakage in notebooks. They have no focus on
   time-series look-ahead and no seeded corpus with clean twins.
