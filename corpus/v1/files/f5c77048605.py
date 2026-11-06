@@ -1,0 +1,13 @@
+import numpy as np
+
+
+def run(data):
+    close = data["close"]
+    returns = close.pct_change(fill_method=None)
+    volume = data["volume"]
+    vol_in = volume
+    filled = vol_in.bfill()
+    surge = filled / filled.rolling(10).mean() - 1.0
+    signal = np.sign(returns) * surge.clip(-1.0, 1.0)
+    positions = signal.shift(1)
+    return positions

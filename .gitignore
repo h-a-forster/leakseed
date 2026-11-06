@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+*.egg-info/
+.coverage
+htmlcov/
+# Scratch work
+tmp/
+# Study output (summaries worth keeping go to results/)
+runs/
+# Downloaded or cached data
+data/
+.cache/
+# Run logs (units and summaries are committed)
+results/**/progress.log
+# Full-profile output until a finished run is meant to be committed
+results/*-full/

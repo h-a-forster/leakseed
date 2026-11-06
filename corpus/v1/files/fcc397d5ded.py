@@ -1,0 +1,15 @@
+def _collapse(pit, which):
+    latest = pit.groupby(["asset", "period_end"], as_index=False).agg(value=("value", which), filed=("filed", "first"))
+    return latest
+
+
+def run(data):
+    close = data["close"]
+    pit = data["fundamentals_pit"].sort_values("filed")
+    latest = _collapse(pit, "first")
+    table = latest.pivot_table(index="filed", columns="asset", values="value")
+    table = table.reindex(columns=close.columns)
+    known = table.reindex(table.index.union(close.index)).ffill().reindex(close.index)
+    signal = known.rank(axis=1, pct=True) - 0.5
+    positions = signal.shift(1)
+    return positions

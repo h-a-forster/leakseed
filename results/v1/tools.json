@@ -1,0 +1,22 @@
+{
+ "backtest-audit": {
+  "package": "backtest-audit",
+  "version": "1.0.0"
+ },
+ "leakguard": {
+  "package": "leakguard-mcp (static core)",
+  "version": "0.1.1"
+ },
+ "lookahead-lint": {
+  "package": "lookahead-lint",
+  "version": "1.0.1"
+ },
+ "peekproof": {
+  "package": "peekproof (git e6c56c3)",
+  "version": "0.1.0+e6c56c3"
+ },
+ "ruff-defaults": {
+  "package": "ruff",
+  "version": "0.17.1"
+ }
+}

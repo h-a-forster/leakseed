@@ -1,0 +1,90 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "leakseed"
+version = "0.1.0"
+description = "A seeded, oracle-verified corpus of look-ahead leaks in backtest code with clean twins, and a scorecard of leakage linters."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+authors = [{ name = "leakseed contributors" }]
+keywords = [
+    "backtesting", "look-ahead bias", "data leakage", "static analysis", "linter benchmark",
+    "seeded bugs", "quantitative finance",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+# The generated corpus scripts use pandas, numpy, polars and scikit-learn; the oracle runs them.
+dependencies = ["numpy>=1.26", "pandas>=2.2", "polars>=1.20", "scikit-learn>=1.4", "scipy>=1.11"]
+
+[project.urls]
+Homepage = "https://github.com/h-a-forster/leakseed"
+Documentation = "https://github.com/h-a-forster/leakseed/tree/main/docs"
+Issues = "https://github.com/h-a-forster/leakseed/issues"
+Changelog = "https://github.com/h-a-forster/leakseed/blob/main/CHANGELOG.md"
+
+[project.scripts]
+leakseed = "leakseed.cli:main"
+
+[dependency-groups]
+# The linters under test. Each was read as text before pinning (docs/DESIGN.md, section 6).
+tools = [
+    "lookahead-lint==1.0.1",
+    "backtest-audit==1.0.0",
+    "leakguard-mcp==0.1.1",
+    "peekproof",
+]
+dev = ["pytest>=8", "ruff>=0.6", { include-group = "tools" }]
+
+[tool.uv]
+# Lock only releases at least two weeks old; move this date deliberately.
+exclude-newer = "2026-10-16T00:00:00Z"
+default-groups = ["dev"]
+# leakguard-mcp is scored in its static CLI mode only, which needs libcst but not the MCP
+# server stack; this marker never matches, so fastmcp and its dependencies stay out.
+override-dependencies = ["fastmcp; sys_platform == 'never'"]
+
+[tool.uv.sources]
+# Not on PyPI: pinned to a commit that was read as text first.
+peekproof = { git = "https://github.com/Thesimpleex/peekproof", rev = "e6c56c37e42d434bc57fd837e89fe0e3f273b5ef" }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/leakseed"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/leakseed", "tests", "docs", "corpus", "results", "uv.lock",
+    "README.md", "REPORT.md", "LICENSE", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md",
+    "CITATION.cff",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# The corpus is generated test data for linters, not project code.
+extend-exclude = ["tmp", "corpus", "runs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# String literals there are lines of generated code; splitting them would hide the code.
+"src/leakseed/templates/classes.py" = ["E501"]

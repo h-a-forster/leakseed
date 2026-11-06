@@ -1,0 +1,51 @@
+{
+  "errors": [],
+  "findings": [
+    {
+      "cell": null,
+      "cell_line": null,
+      "code": "LA001",
+      "column": 15,
+      "end_line": 7,
+      "fix": "Shift features backward (positive periods) instead. For a label, keep the shift and add '# lookahead-lint: ignore[LA001]' so the intent stays visible in review.",
+      "line": 7,
+      "message": "negative shift pulls future rows into the present; legitimate only for label construction, which should be suppressed inline [periods=-1]",
+      "name": "negative-shift",
+      "path": "files\\f505ade6863.py",
+      "rationale": "A negative shift reads values that are not observable at the row's timestamp."
+    },
+    {
+      "cell": null,
+      "cell_line": null,
+      "code": "LA005",
+      "column": 19,
+      "end_line": 13,
+      "fix": "Pass shuffle=False for ordered data, or split on an explicit date boundary.",
+      "line": 13,
+      "message": "train_test_split is not pinned to shuffle=False, so future rows enter training",
+      "name": "shuffled-split",
+      "path": "files\\f8b0d0eb31c.py",
+      "rationale": "Random splits of a time-ordered frame place later rows before earlier ones."
+    },
+    {
+      "cell": null,
+      "cell_line": null,
+      "code": "LA002",
+      "column": 14,
+      "end_line": 8,
+      "fix": "Use forward fill (.ffill(), method='ffill', limit_direction='forward') so gaps are filled only from already-observed values.",
+      "line": 8,
+      "message": "backward fill propagates a later observation onto an earlier timestamp [bfill()]",
+      "name": "backward-fill",
+      "path": "files\\f9054c1ca1e.py",
+      "rationale": "Filling backward copies data from the future into rows that predate it."
+    }
+  ],
+  "schema_version": 1,
+  "summary": {
+    "errors": 0,
+    "files_checked": 4,
+    "findings": 3
+  },
+  "tool": "lookahead-lint"
+}

@@ -1,0 +1,10 @@
+{
+ "n": 5000,
+ "n_t": 16,
+ "data_seed": 2026,
+ "modes": [
+  "values",
+  "availability",
+  "regime"
+ ]
+}

@@ -1,0 +1,64 @@
+{
+  "files\\f1b85716c54.py": [
+    {
+      "code": "STAT002",
+      "message": "No transaction cost or slippage variable detected",
+      "suggestion": "Add commission and slippage estimates. Ignoring transaction costs systematically overstates backtest returns.",
+      "line": 1,
+      "col": 0,
+      "source_line": "import numpy as np",
+      "severity": "warning"
+    },
+    {
+      "code": "LEAK001",
+      "message": "fit() called with no train_test_split detected \u2014 possible full-dataset leakage",
+      "suggestion": "Split your data chronologically before fitting any scaler or model. See docs/rules/LEAK001.md for the correct pattern.",
+      "line": 11,
+      "col": 13,
+      "source_line": "scaler = StandardScaler().fit(features[: int(len(features) * 1.0)])",
+      "severity": "error"
+    }
+  ],
+  "files\\f505ade6863.py": [
+    {
+      "code": "STAT002",
+      "message": "No transaction cost or slippage variable detected",
+      "suggestion": "Add commission and slippage estimates. Ignoring transaction costs systematically overstates backtest returns.",
+      "line": 1,
+      "col": 0,
+      "source_line": "import numpy as np",
+      "severity": "warning"
+    },
+    {
+      "code": "LAB001",
+      "message": "Negative shift \u2014 future data pulled into current timestep",
+      "suggestion": "Replace shift(-n) with shift(n). Negative periods reference future rows, invalidating the backtest.",
+      "line": 7,
+      "col": 14,
+      "source_line": "feature = returns.shift(-1)",
+      "severity": "error"
+    }
+  ],
+  "files\\f8b0d0eb31c.py": [
+    {
+      "code": "STAT002",
+      "message": "No transaction cost or slippage variable detected",
+      "suggestion": "Add commission and slippage estimates. Ignoring transaction costs systematically overstates backtest returns.",
+      "line": 1,
+      "col": 0,
+      "source_line": "import numpy as np",
+      "severity": "warning"
+    }
+  ],
+  "files\\f9054c1ca1e.py": [
+    {
+      "code": "STAT002",
+      "message": "No transaction cost or slippage variable detected",
+      "suggestion": "Add commission and slippage estimates. Ignoring transaction costs systematically overstates backtest returns.",
+      "line": 1,
+      "col": 0,
+      "source_line": "import numpy as np",
+      "severity": "warning"
+    }
+  ]
+}

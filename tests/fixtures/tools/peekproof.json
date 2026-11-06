@@ -1,0 +1,35 @@
+[
+  {
+    "rule_id": "PP001",
+    "name": "negative-shift",
+    "message": "shift(-1) pulls future values into the current row",
+    "hint": "Shift by a positive number of rows (look back). Forward-looking label code belongs in a function marked '# peekproof: label'.",
+    "path": "files\\f505ade6863.py",
+    "line": 7,
+    "col": 23,
+    "confidence": "high",
+    "snippet": "feature = returns.shift(-1)"
+  },
+  {
+    "rule_id": "PP005",
+    "name": "shuffled-split",
+    "message": "train_test_split shuffles rows by default (future rows reach training)",
+    "hint": "Split by time: train_test_split(..., shuffle=False), TimeSeriesSplit, or a purged/embargoed splitter.",
+    "path": "files\\f8b0d0eb31c.py",
+    "line": 13,
+    "col": 19,
+    "confidence": "high",
+    "snippet": "train, test = train_test_split(rows, test_size=0.3, random_state=0)"
+  },
+  {
+    "rule_id": "PP002",
+    "name": "backward-fill",
+    "message": "bfill() copies later observations into earlier rows",
+    "hint": "Use ffill() so a gap is filled from the past only, or leave the gap and drop it.",
+    "path": "files\\f9054c1ca1e.py",
+    "line": 8,
+    "col": 21,
+    "confidence": "high",
+    "snippet": "filled = volume.bfill()"
+  }
+]
