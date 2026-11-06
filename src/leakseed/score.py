@@ -3,7 +3,11 @@
 - recall: P(flag | leaky file)
 - false-positive rate: P(flag | clean twin)
 - paired discrimination: P(flags the leaky file and not its twin), one unit per twin pair
-- localisation: P(a flag lies within the seeded site +/- 2 lines | leaky file flagged)
+- paired at the site: P(a flag on a site line of the leaky file and none on the site lines of
+  either twin in the clean file); a rule that fires on code both twins share cannot score
+  here or hide a real hit
+- localisation: P(a flag lies within the seeded site +/- 2 lines | leaky file flagged),
+  reported with the same probability for a uniformly random code line (the files are small)
 
 Pooled rates get a cluster bootstrap over templates (class/variant): the levels and libraries
 of one template share code and are not independent draws. Per-cell rates get Clopper-Pearson.
@@ -24,27 +28,66 @@ TOLERANCE = 2  # lines either side of a site line that still count as localised
 
 
 def file_outcomes(
-    manifest: list[dict], findings: list[Finding], adapter: Adapter, *, any_rule=False
+    manifest: list[dict],
+    findings: list[Finding],
+    adapter: Adapter,
+    *,
+    any_rule: bool = False,
+    strict: bool = False,
 ):
-    """Return ``{file id: {"flagged": bool, "localised": bool}}`` for every manifest file."""
+    """Return ``{file id: {"flagged", "localised", "exact", "either"}}`` for every manifest file.
+
+    ``exact`` means a flag on one of the file's site lines, ``either`` on one of its own or its
+    twin's: at L3 the clean file holds the leaky expression in a dead branch, on lines that are
+    site lines of the leaky file only. ``any_rule`` counts every rule; ``strict`` only findings
+    of the tool's top severity.
+    """
+    keep = adapter.counts_strict if strict else adapter.counts
     by_path: dict[str, list[Finding]] = defaultdict(list)
     known = {r["path"] for r in manifest}
+    site_of = {r["id"]: r["site_lines"] for r in manifest}
     for f in findings:
         if f.path not in known:
             raise ValueError(f"finding for a file that is not in the manifest: {f.path}")
-        if any_rule or adapter.counts(f):
+        if any_rule or keep(f):
             by_path[f.path].append(f)
     out = {}
     for r in manifest:
         hits = by_path.get(r["path"], [])
         site = r["site_lines"]
         localised = any(abs(f.line - s) <= TOLERANCE for f in hits for s in site)
-        out[r["id"]] = {"flagged": bool(hits), "localised": localised}
+        exact = any(f.line in site for f in hits)
+        either = exact or any(f.line in site_of[r["twin"]] for f in hits)
+        out[r["id"]] = {
+            "flagged": bool(hits), "localised": localised, "exact": exact, "either": either,
+        }  # fmt: skip
     return out
 
 
-def estimands(manifest: list[dict], outcomes: dict, *, n_boot: int = 10_000, seed: int = 0):
-    """Pooled estimands with cluster-bootstrap intervals, plus raw counts."""
+def site_hit(outcomes: dict, row: dict) -> bool:
+    """For a leaky ``row``: a flag on its site lines and none at the same place in its twin."""
+    return outcomes[row["id"]]["exact"] and not outcomes[row["twin"]]["either"]
+
+
+def window_share(site: list[int], code_lines: list[int]) -> float:
+    """Share of a file's code lines within ``TOLERANCE`` of a site line."""
+    near = sum(any(abs(c - s) <= TOLERANCE for s in site) for c in code_lines)
+    return near / len(code_lines)
+
+
+def estimands(
+    manifest: list[dict],
+    outcomes: dict,
+    *,
+    n_boot: int = 10_000,
+    seed: int = 0,
+    window: dict[str, float] | None = None,
+):
+    """Pooled estimands with cluster-bootstrap intervals, plus raw counts.
+
+    ``window`` maps file ids to :func:`window_share`; with it, the output adds the localisation
+    a random code line would get on the same flagged files.
+    """
     leak = [r for r in manifest if r["label"] == "leak"]
     clean = [r for r in manifest if r["label"] == "clean"]
 
@@ -55,13 +98,27 @@ def estimands(manifest: list[dict], outcomes: dict, *, n_boot: int = 10_000, see
         return {"k": int(y.sum()), "n": int(y.size), "rate": est, "lo": lo, "hi": hi}
 
     flagged_leak = [r for r in leak if outcomes[r["id"]]["flagged"]]
+    class_rates: dict[str, list[list[float]]] = defaultdict(list)
+    for r in leak:
+        class_rates[r["cls"]].append(
+            [float(outcomes[r["id"]]["flagged"]), float(site_hit(outcomes, r))]
+        )
+    class_means = np.mean([np.mean(v, axis=0) for v in class_rates.values()], axis=0)
+    extra = {}
+    if window is not None and flagged_leak:
+        extra["localisation_chance"] = float(np.mean([window[r["id"]] for r in flagged_leak]))
     return {
+        **extra,
+        "recall_class_mean": float(class_means[0]),
+        "paired_site_class_mean": float(class_means[1]),
         "recall": pooled(leak, lambda r: outcomes[r["id"]]["flagged"]),
         "fpr": pooled(clean, lambda r: outcomes[r["id"]]["flagged"]),
         "paired": pooled(
             leak, lambda r: outcomes[r["id"]]["flagged"] and not outcomes[r["twin"]]["flagged"]
         ),
+        "paired_site": pooled(leak, lambda r: site_hit(outcomes, r)),
         "localisation": pooled(flagged_leak, lambda r: outcomes[r["id"]]["localised"]),
+        "localisation_exact": pooled(flagged_leak, lambda r: outcomes[r["id"]]["exact"]),
     }
 
 

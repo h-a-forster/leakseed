@@ -62,6 +62,32 @@ def mcnemar_exact(a: np.ndarray, b: np.ndarray) -> dict:
     return {"only_a": only_a, "only_b": only_b, "n": int(a.size), "p": p}
 
 
+def cluster_sign_test(a: np.ndarray, b: np.ndarray, clusters: np.ndarray) -> float:
+    """Exact two-sided sign-flip test of paired 0/1 outcomes, flipping whole clusters.
+
+    Under the null that the two tools are exchangeable within a cluster, each cluster's
+    difference ``sum(a) - sum(b)`` is equally likely to carry either sign. McNemar's test assumes
+    independent units; this one needs independent clusters only, so correlated files of one
+    template count once. The null distribution of the total is built by convolution.
+    """
+    a = np.asarray(a, dtype=int)
+    b = np.asarray(b, dtype=int)
+    clusters = np.asarray(clusters)
+    if not a.shape == b.shape == clusters.shape:
+        raise ValueError("paired outcomes and clusters must have the same length")
+    labels = np.unique(clusters)
+    diffs = [int(a[clusters == c].sum() - b[clusters == c].sum()) for c in labels]
+    null: dict[int, float] = {0: 1.0}
+    for d in diffs:
+        step: dict[int, float] = {}
+        for total, prob in null.items():
+            for signed in (total + d, total - d):
+                step[signed] = step.get(signed, 0.0) + prob / 2
+        null = step
+    observed = abs(sum(diffs))
+    return min(1.0, sum(p for total, p in null.items() if abs(total) >= observed))
+
+
 def holm(pvalues: list[float]) -> list[float]:
     """Holm step-down adjusted p-values, in the input order."""
     p = np.asarray(pvalues, dtype=float)

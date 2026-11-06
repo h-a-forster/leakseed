@@ -16,6 +16,7 @@ from .adapters import ADAPTERS, get
 from .adapters.base import executable, findings_to_jsonl, run_tool
 from .data import PERTURB_MODES
 from .generate import V1_SEED, check_snapshot, read_manifest, write
+from .impact import DATA_SEEDS, measure, write_impact
 from .oracle import DATA_SEED, verify, write_verdicts
 from .report import write_report
 
@@ -59,7 +60,26 @@ def _verify(args: argparse.Namespace) -> int:
         (args.out / "oracle_meta.json").write_text(
             json.dumps(meta, indent=1) + "\n", "utf-8", newline="\n"
         )
+    elif args.out and not ids:
+        path = args.out / "oracle_replication.json"
+        done_seeds = json.loads(path.read_text("utf-8")) if path.is_file() else {}
+        done_seeds[str(args.data_seed)] = {
+            "agree": len(verdicts) - len(bad),
+            "total": len(verdicts),
+        }
+        path.write_text(
+            json.dumps(done_seeds, indent=1, sort_keys=True) + "\n", "utf-8", newline="\n"
+        )
     return 1 if bad else 0
+
+
+def _impact(args: argparse.Namespace) -> int:
+    rows = measure(args.corpus, n=args.n, data_seeds=tuple(args.data_seeds))
+    write_impact(args.out / "impact.jsonl", rows)
+    print(
+        f"wrote {args.out / 'impact.jsonl'} ({len(rows)} files, {len(args.data_seeds)} data seeds)"
+    )
+    return 0
 
 
 def _tool_version(name: str) -> str:
@@ -100,6 +120,9 @@ def _report(args: argparse.Namespace) -> int:
         print(f"{name:15s} recall {p['recall']['rate']:.3f}  fpr {p['fpr']['rate']:.3f}  "
               f"paired {p['paired']['rate']:.3f}")  # fmt: skip
     print(f"wrote {args.results / 'summary.json'} and {args.results / 'scorecard.md'}")
+    if summary["oracle"]["disagree"]:
+        print(f"oracle disagrees with {len(summary['oracle']['disagree'])} labels", file=sys.stderr)
+        return 1
     return 0
 
 
@@ -126,6 +149,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     v.add_argument("--sample-seed", type=int, default=0)
     v.add_argument("--verbose", action="store_true")
     v.set_defaults(func=_verify)
+
+    i = sub.add_parser("impact", help="measure each file's Sharpe ratio on driftless data")
+    i.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+    i.add_argument("--out", type=Path, default=DEFAULT_RESULTS)
+    i.add_argument("--n", type=int, default=5000, help="rows of synthetic data")
+    i.add_argument("--data-seeds", type=int, nargs="+", default=list(DATA_SEEDS))
+    i.set_defaults(func=_impact)
 
     s = sub.add_parser("score", help="run a linter over the corpus and store its findings")
     s.add_argument("--tool", required=True, choices=[*ADAPTERS, "all"])

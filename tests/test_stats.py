@@ -5,8 +5,14 @@ import pytest
 
 from leakseed.adapters import Finding, get
 from leakseed.report import _paired_cells
-from leakseed.score import cells, estimands, file_outcomes
-from leakseed.stats import clopper_pearson, cluster_bootstrap, holm, mcnemar_exact
+from leakseed.score import cells, estimands, file_outcomes, site_hit, window_share
+from leakseed.stats import (
+    clopper_pearson,
+    cluster_bootstrap,
+    cluster_sign_test,
+    holm,
+    mcnemar_exact,
+)
 
 
 def test_clopper_pearson_closed_forms():
@@ -36,6 +42,22 @@ def test_mcnemar_and_holm_hand_cases():
     assert (r["only_a"], r["only_b"]) == (5, 0) and r["p"] == pytest.approx(2 * 0.5**5)
     assert mcnemar_exact(b, b)["p"] == 1.0
     assert holm([0.01, 0.04, 0.03]) == pytest.approx([0.03, 0.06, 0.06])
+
+
+def test_cluster_sign_test_counts_a_template_once():
+    # Differences +2, +1 and 0 by cluster: totals +-3 and +-1 are equally likely, so P(|T| >= 3)
+    # is 1/2. The cluster with no difference adds nothing.
+    a = np.array([1, 1, 1, 0, 0])
+    b = np.array([0, 0, 0, 0, 0])
+    g = np.array(["x", "x", "y", "z", "z"])
+    assert cluster_sign_test(a, b, g) == pytest.approx(0.5)
+    # Ten discordant files in one template: McNemar calls that strong, one cluster cannot.
+    a, b = np.ones(10, bool), np.zeros(10, bool)
+    assert mcnemar_exact(a, b)["p"] < 0.01
+    assert cluster_sign_test(a, b, np.array(["t"] * 10)) == 1.0
+    # Six clusters all one way: the smallest possible two-sided p is 2 / 2**6.
+    assert cluster_sign_test(a[:6], b[:6], np.arange(6)) == pytest.approx(2 / 2**6)
+    assert cluster_sign_test(b, b, np.arange(10)) == 1.0
 
 
 def _toy():
@@ -69,6 +91,37 @@ def test_estimands_on_a_hand_computed_case():
     by_level = _paired_cells(leak_rows, out, "level")
     assert (by_level["L0"]["k"], by_level["L0"]["n"]) == (0, 2)
     assert (by_level["L1"]["k"], by_level["L1"]["n"]) == (1, 1)
+
+
+def test_a_flag_on_shared_code_is_not_a_hit_at_the_site():
+    manifest = _toy()
+    findings = [
+        Finding("files/leak0.py", 10, "LA001"),  # at the site, twin silent there
+        Finding("files/clean0.py", 3, "LA002"),  # twin flagged on shared code only
+        Finding("files/leak1.py", 3, "LA002"),  # both flagged on shared code: no hit
+        Finding("files/clean1.py", 3, "LA002"),
+    ]
+    out = file_outcomes(manifest, findings, get("lookahead-lint"))
+    leaks = {r["id"]: r for r in manifest if r["label"] == "leak"}
+    assert site_hit(out, leaks["leak0"]) and not site_hit(out, leaks["leak1"])
+    est = estimands(manifest, out, n_boot=50)
+    assert est["paired"]["k"] == 0 and est["paired_site"]["k"] == 1
+
+
+def test_a_dead_branch_flagged_in_both_twins_is_not_a_hit_at_the_site():
+    # L3: line 10 is a site line of the leaky file, and the same dead branch in its twin.
+    manifest = _toy()
+    for r in manifest:
+        if r["id"] == "clean0":
+            r["site_lines"] = [14]
+    findings = [Finding("files/leak0.py", 10, "PP006"), Finding("files/clean0.py", 10, "PP006")]
+    out = file_outcomes(manifest, findings, get("peekproof"))
+    assert not site_hit(out, next(r for r in manifest if r["id"] == "leak0"))
+
+
+def test_window_share_counts_code_lines_near_the_site():
+    assert window_share([5], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == pytest.approx(0.5)
+    assert window_share([1], [1, 9]) == pytest.approx(0.5)
 
 
 def test_findings_outside_the_manifest_are_rejected():
