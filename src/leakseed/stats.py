@@ -89,13 +89,16 @@ def cluster_sign_test(a: np.ndarray, b: np.ndarray, clusters: np.ndarray) -> flo
 
 
 def holm(pvalues: list[float]) -> list[float]:
-    """Holm step-down adjusted p-values, in the input order."""
+    """Holm step-down adjusted p-values, in the input order.
+
+    NaN entries stay NaN and do not count toward the family size.
+    """
     p = np.asarray(pvalues, dtype=float)
-    order = np.argsort(p)
-    m = len(p)
-    adjusted = np.empty(m)
+    kept = np.flatnonzero(~np.isnan(p))
+    m = kept.size
+    adjusted = np.full_like(p, np.nan)
     running = 0.0
-    for rank, idx in enumerate(order):
+    for rank, idx in enumerate(kept[np.argsort(p[kept])]):
         running = max(running, min(1.0, (m - rank) * p[idx]))
         adjusted[idx] = running
     return adjusted.tolist()

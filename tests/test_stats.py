@@ -42,6 +42,11 @@ def test_mcnemar_and_holm_hand_cases():
     assert (r["only_a"], r["only_b"]) == (5, 0) and r["p"] == pytest.approx(2 * 0.5**5)
     assert mcnemar_exact(b, b)["p"] == 1.0
     assert holm([0.01, 0.04, 0.03]) == pytest.approx([0.03, 0.06, 0.06])
+    # NaN stays NaN and leaves the family, wherever it sits.
+    nan = float("nan")
+    assert holm([0.01, nan, 0.02]) == pytest.approx([0.02, nan, 0.02], nan_ok=True)
+    assert holm([nan, 0.01, 0.02]) == pytest.approx([nan, 0.02, 0.02], nan_ok=True)
+    assert holm([nan, nan]) == pytest.approx([nan, nan], nan_ok=True)
 
 
 def test_cluster_sign_test_counts_a_template_once():
