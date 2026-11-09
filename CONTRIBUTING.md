@@ -74,6 +74,6 @@ Put scratch output in `tmp/`.
 
 - One change per pull request, with tests and docs.
 - Put change notes in `docs/release-notes-<version>.md`.
-- Keep [backlog.md](backlog.md) and the status section of [AGENTS.md](AGENTS.md) current.
+- Keep the status section of [AGENTS.md](AGENTS.md) current.
 
 Security issues: see [SECURITY.md](SECURITY.md).

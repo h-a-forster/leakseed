@@ -67,4 +67,4 @@ Full study (about 5 minutes with 3 workers): `leakseed verify --workers 3`,
 
 ## Status
 
-Open work is in [backlog.md](backlog.md). The repository is private; v0.1.0 is not tagged.
+Open work is in `backlog.md`. The repository is private; v0.1.0 is not tagged.
