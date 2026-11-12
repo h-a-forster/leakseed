@@ -295,5 +295,5 @@ Two independent audits ran on this repository; what they found is fixed, except 
 - **The sdist includes `.gitignore`.** One small text file that changes nothing about the build.
 - **The full study does not run in CI.** A test now rebuilds `summary.json` from the committed
   inputs and compares every number but the bootstrap bounds. Re-running the oracle and the
-  linters stays a manual `git diff results/`: CI minutes are metered while the repository is
-  private, and the byte-for-byte promise holds on one platform only.
+  linters stays a manual `git diff results/`: the byte-for-byte promise holds on one platform
+  only.

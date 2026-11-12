@@ -48,7 +48,7 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
 | `corpus/probes/` | hand-written pairs for rules the v1 style cannot trigger; no rates from these |
 | `results/v1/` | oracle verdicts, findings, impact, summary, scorecard, probes, corpus stamp |
 | `results/fresh/` | scorecards of two fresh generator seeds (their corpora regenerate from the seed) |
-| `docs/upstream/` | draft issues for the linters, not filed |
+| `docs/upstream.md` | issues filed with the linters and their state; drafts in `docs/upstream/` |
 
 ## How to test
 
@@ -67,4 +67,5 @@ Full study (about 5 minutes with 3 workers): `leakseed verify --workers 3`,
 
 ## Status
 
-Open work is in `backlog.md`. The repository is private; v0.1.0 is not tagged.
+Open work is in `backlog.md` (gitignored, local only). The repository is public; v0.1.0 is tagged
+and released.
