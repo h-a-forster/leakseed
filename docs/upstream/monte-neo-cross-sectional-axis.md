@@ -1,6 +1,7 @@
 # Draft: monte-neo warns on cross-sectional operations
 
-Not filed. Applies to monte-neo 0.54.0, `monte_neo/verify/lint.py`.
+Filed as [NeoZorK/Monte-Neo#125](https://github.com/NeoZorK/Monte-Neo/issues/125) on 2026-11-12.
+Applies to monte-neo 0.54.0, `monte_neo/verify/lint.py`.
 
 `full_sample_rank` and `full_sample_stat` do not look at `axis`. `rank(axis=1)` and
 `np.nanmean(x, axis=1)` compute over the assets of one row, so they read no later row:

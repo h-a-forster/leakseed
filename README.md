@@ -116,7 +116,7 @@ run statically (no tool executes corpus code). No network or model calls at run 
 | `results/fresh/` | scorecards of two fresh generator seeds |
 | `REPORT.md` | full findings, method and limits |
 | `docs/DESIGN.md` | taxonomy, oracle soundness, statistics, threat model, tool vetting, prior art |
-| `docs/upstream/` | draft issues for the linters (not filed) |
+| [`docs/upstream.md`](docs/upstream.md) | issues filed with the linters and their state; drafts in `docs/upstream/` |
 
 ## Citing
 
