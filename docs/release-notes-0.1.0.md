@@ -1,6 +1,6 @@
 # leakseed 0.1.0 release notes
 
-First release, not tagged yet. Results are in [results/v1/scorecard.md](../results/v1/scorecard.md) and
+First release, tagged v0.1.0 and published on 2026-11-08. Results are in [results/v1/scorecard.md](../results/v1/scorecard.md) and
 `results/fresh/`.
 
 ## What it does
@@ -23,7 +23,8 @@ time.
   test with Holm adjustment, localisation against a random line, severity and any-rule
   sensitivities, and the Sharpe each file earns on drift-free data.
 - `corpus/probes`: three hand-written pairs showing what rules outside the v1 style do.
-- `docs/upstream/`: four draft issues for the linters, not filed.
+- `docs/upstream/`: four draft issues for the linters, none filed at release (one filed
+  since; see [upstream.md](upstream.md)).
 
 ## Corrections made before the release
 
