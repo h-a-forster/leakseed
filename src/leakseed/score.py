@@ -153,6 +153,16 @@ def union_estimands(
     }
 
 
+def merged_outcomes(per_tool: list[dict]) -> dict:
+    """Outcomes of running every tool and OR-ing their flags, as if they were one tool.
+
+    Unlike ``union_estimands``, a flag by any tool on a clean twin now cancels a pair.
+    """
+    ids = per_tool[0].keys()
+    fields = ("flagged", "localised", "exact", "either")
+    return {i: {f: any(o[i][f] for o in per_tool) for f in fields} for i in ids}
+
+
 def cells(manifest: list[dict], outcomes: dict, keys: tuple[str, ...], label: str = "leak"):
     """Flag rate per cell of ``keys`` (for example class x level) with Clopper-Pearson."""
     groups: dict[tuple, list[bool]] = defaultdict(list)

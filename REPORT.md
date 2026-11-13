@@ -169,6 +169,6 @@ uv sync
 uv run leakseed verify --workers 3
 uv run leakseed impact
 uv run leakseed score --tool all
-uv run leakseed report
+uv run leakseed report --readme README.md
 uv run python scripts/probes.py
 ```

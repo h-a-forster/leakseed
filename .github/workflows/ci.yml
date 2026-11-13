@@ -57,6 +57,13 @@ jobs:
       - name: Test
         run: uv run pytest
 
+      - name: Published numbers rebuild from the committed results
+        # summary.json, scorecard.md, published.md and the README's headline block, offline.
+        shell: bash
+        run: |
+          uv run leakseed report --readme README.md
+          git diff --exit-code -- results/ README.md
+
       - name: CLI smoke
         # bash on every OS: pwsh would only fail on the last line's exit code.
         shell: bash

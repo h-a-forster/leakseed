@@ -11,7 +11,7 @@ from collections import Counter
 from collections.abc import Sequence
 from pathlib import Path
 
-from . import __version__
+from . import __version__, published
 from .adapters import ADAPTERS, get
 from .adapters.base import executable, findings_to_jsonl, run_tool
 from .data import PERTURB_MODES
@@ -139,12 +139,18 @@ def _score(args: argparse.Namespace) -> int:
 
 def _report(args: argparse.Namespace) -> int:
     _check_results(args.corpus, args.results)
+    if args.readme and not args.readme.is_file():
+        raise SystemExit(f"no README at {args.readme}")
     summary = write_report(args.corpus, args.results, n_boot=args.bootstrap)
+    if args.readme:
+        text = args.readme.read_text(encoding="utf-8")
+        new = published.sync_readme(text, published.readme_block(summary))
+        args.readme.write_text(new, encoding="utf-8", newline="\n")
     for name, t in summary["tools"].items():
         p = t["primary"]
         print(f"{name:15s} recall {p['recall']['rate']:.3f}  fpr {p['fpr']['rate']:.3f}  "
               f"paired {p['paired']['rate']:.3f}")  # fmt: skip
-    print(f"wrote {args.results / 'summary.json'} and {args.results / 'scorecard.md'}")
+    print(f"wrote summary.json, scorecard.md and published.md in {args.results}")
     if summary["oracle"]["disagree"]:
         print(f"oracle disagrees with {len(summary['oracle']['disagree'])} labels", file=sys.stderr)
         return 1
@@ -192,6 +198,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     r.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
     r.add_argument("--results", type=Path, default=DEFAULT_RESULTS)
     r.add_argument("--bootstrap", type=int, default=10_000)
+    r.add_argument("--readme", type=Path, help="also rewrite this README's generated headline")
     r.set_defaults(func=_report)
 
     args = parser.parse_args(argv)

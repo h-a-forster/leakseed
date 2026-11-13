@@ -8,12 +8,14 @@ from collections import Counter
 from pathlib import Path
 from statistics import median
 
+from . import published
 from .adapters import ADAPTERS, get
 from .generate import VERSION_FILE, read_manifest, read_source
 from .score import (
     cells,
     estimands,
     file_outcomes,
+    merged_outcomes,
     pair_hit,
     read_findings,
     site_hit,
@@ -123,6 +125,12 @@ def build_summary(corpus: Path, results: Path, *, n_boot: int = 10_000, seed: in
     union_est = union_estimands(
         manifest, [outcomes_by_tool[t] for t in linters], n_boot=n_boot, seed=seed
     )
+    merged = merged_outcomes([outcomes_by_tool[t] for t in linters])
+    merged_counts = {
+        "n": len(leak_rows),
+        "paired": sum(pair_hit(merged, r) for r in leak_rows),
+        "paired_site": sum(site_hit(merged, r) for r in leak_rows),
+    }
 
     fps = []
     for name in linters:
@@ -168,6 +176,7 @@ def build_summary(corpus: Path, results: Path, *, n_boot: int = 10_000, seed: in
         "bootstrap": {"n_boot": n_boot, "seed": seed, "cluster": "template (class/variant)"},
         "tools": tools,
         "union": union_est,
+        "merged": merged_counts,
         "impact": _impact_table(leak_rows, sharpes, outcomes_by_tool, linters, union_site),
         "mcnemar": tests,
         "coverage": {
@@ -444,5 +453,8 @@ def write_report(corpus: Path, results: Path, *, n_boot: int = 10_000) -> dict:
     )
     (Path(results) / "scorecard.md").write_text(
         render_markdown(summary), encoding="utf-8", newline="\n"
+    )
+    (Path(results) / "published.md").write_text(
+        published.render(summary), encoding="utf-8", newline="\n"
     )
     return summary

@@ -24,7 +24,10 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
   (hash-checked against the manifest) and the fixed probes. Linters run statically.
 - A new tool is read as text before it is installed or run (DESIGN.md, section 6) and pinned
   in the `tools` group. Tool failures raise; they never count as "no finding".
-- Results under `results/` are generated; never edit them. `oracle.jsonl`, `findings/` and
+- Results under `results/` are generated; never edit them. README and REPORT tables are copies
+  of rows in `results/v1/published.md`, and the README's headline prose between the generated
+  markers is rendered by `leakseed report --readme README.md`; change `published.py`, not the
+  copies. `tests/test_published.py` and CI hold them to the committed results. `oracle.jsonl`, `findings/` and
   `impact.jsonl` are reproducible byte for byte on one platform. Each results directory has a
   `corpus.json` with its corpus's manifest hash, and the commands refuse to mix two corpora
   there, so scratch corpora need their own `--out`.
@@ -42,6 +45,7 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
 | `src/leakseed/adapters/` | one adapter per linter, tool output to `Finding` |
 | `src/leakseed/score.py`, `stats.py` | estimands; bootstrap, Clopper-Pearson, McNemar, template sign-flip, Holm |
 | `src/leakseed/report.py` | `summary.json` and `scorecard.md` |
+| `src/leakseed/published.py` | `published.md`: the README and REPORT tables and the README's headline prose |
 | `src/leakseed/cli.py` | `generate / verify / impact / score / report` |
 | `scripts/probes.py` | runs the linters over `corpus/probes`, writes `results/v1/probes.md` |
 | `corpus/v1/` | frozen corpus |
@@ -62,7 +66,7 @@ uv run leakseed generate --check
 ```
 
 Full study (about 5 minutes with 3 workers): `leakseed verify --workers 3`,
-`leakseed impact`, `leakseed score --tool all`, `leakseed report`,
+`leakseed impact`, `leakseed score --tool all`, `leakseed report --readme README.md`,
 `uv run python scripts/probes.py`. `git diff results/` should then be empty.
 
 ## Status

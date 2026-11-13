@@ -1797,6 +1797,11 @@
    "p_cluster_holm": 0.012451171875
   }
  ],
+ "merged": {
+  "n": 184,
+  "paired": 54,
+  "paired_site": 67
+ },
  "missed_l0": [
   {
    "cls": "same_bar",
