@@ -7,6 +7,7 @@ import json
 from collections import Counter
 from pathlib import Path
 from statistics import median
+from typing import Any
 
 from . import published
 from .adapters import ADAPTERS, get
@@ -40,7 +41,23 @@ def _pct(e: dict) -> str:
     return "n/a" if e["n"] == 0 else f"{e['k']}/{e['n']}"
 
 
+def _portable(value: Any) -> Any:
+    """Floats cut to 12 significant digits: library maths (scipy's beta quantiles, for one) can
+    differ in the last bit between platforms, and summary.json must rebuild byte for byte."""
+    if isinstance(value, float):
+        return float(f"{value:.12g}")
+    if isinstance(value, dict):
+        return {k: _portable(v) for k, v in value.items()}
+    if isinstance(value, list | tuple):
+        return [_portable(v) for v in value]
+    return value
+
+
 def build_summary(corpus: Path, results: Path, *, n_boot: int = 10_000, seed: int = 0) -> dict:
+    return _portable(_summary(corpus, results, n_boot=n_boot, seed=seed))
+
+
+def _summary(corpus: Path, results: Path, *, n_boot: int, seed: int) -> dict:
     manifest = read_manifest(corpus)
     version = json.loads((corpus / VERSION_FILE).read_text(encoding="utf-8"))
     oracle_path = results / "oracle.jsonl"
