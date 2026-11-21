@@ -160,10 +160,8 @@ is not evidence.
 - **Replication.** All 368 labels are confirmed on data seeds 2026 (`results/v1/oracle.jsonl`),
   7, 11 and 13 (`results/v1/oracle_replication.json`), and every label of two fresh generator
   seeds on the default data (`results/fresh/`). A replication must run at the main run's
-  `n` and `n_t` (`verify` refuses other settings), and each entry now records them; a main run
-  at new settings drops the entries that no longer match. The three committed entries were
-  written before entries carried settings, so the file itself does not show them; rerunning
-  data seeds 7, 11 and 13 would add them.
+  `n` and `n_t` (`verify` refuses other settings), and each entry records them; a main run
+  at new settings drops the entries that no longer match.
 - **Scope of "leak".** The oracle catches dependence on the future. It does not judge
   whether the leak matters economically (section 7), and it does not catch leakage that has
   no time order (for example duplicated rows across a random split).

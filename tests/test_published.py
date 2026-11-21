@@ -61,8 +61,8 @@ def test_replication_claims_match_the_recorded_data_seeds():
     seeds = json.loads((RESULTS / "oracle_replication.json").read_text(encoding="utf-8"))
     o = _summary()["oracle"]
     assert all(r["agree"] == r["total"] == o["total"] for r in seeds.values())
-    assert all(r.get("n", o["n"]) == o["n"] and r.get("n_t", o["n_t"]) == o["n_t"]
-               for r in seeds.values())  # fmt: skip
+    # Each entry records the settings it ran at, so the file itself shows they are the main run's.
+    assert [(r.get("n"), r.get("n_t")) for r in seeds.values()] == [(o["n"], o["n_t"])] * len(seeds)
     listed = [str(o["data_seed"]), *sorted(seeds, key=int)]
     report = " ".join((ROOT / "REPORT.md").read_text(encoding="utf-8").split())
     assert f"on data seeds {', '.join(listed[:-1])} and {listed[-1]}" in report
