@@ -64,11 +64,11 @@ At the site, 16 of 21 pairs pass p < 0.05 with McNemar over files, which treats 
 independent. Only 8 of 21 survive the template sign-flip test with Holm:
 
 - monte-neo beats backtest-audit (0.0003), lookahead-lint (0.0003), overfit-gauntlet (0.0006),
-  leakguard (0.010), nofuturedata (0.013) and peekproof (0.032).
+  leakguard (0.010), nofuturedata (0.012) and peekproof (0.032).
 - peekproof beats lookahead-lint (0.031).
 - leakguard beats backtest-audit (0.031).
 
-peekproof against backtest-audit shows the gap: McNemar 2.5e-07, template test 0.064. For recall
+peekproof against backtest-audit shows the gap: McNemar 2.5e-07, template test 0.063. For recall
 the counts are 15 and 6.
 
 ## By obfuscation level
@@ -159,8 +159,10 @@ cannot reveal tuning.
 - **Static tools only.** Runtime checks that several of these tools ship are not scored.
 - **Read order.** Four tools were read before v1 was generated, so the templates may reflect their
   rules. Only overfit-gauntlet, monte-neo and nofuturedata are strictly out of sample.
-- **Few clusters.** 30 templates is few for a percentile bootstrap, so the intervals are somewhat
-  narrow.
+- **Few clusters.** 30 templates is few for a percentile bootstrap, so the intervals are too
+  narrow. A double-bootstrap check (`results/v1/bootstrap_coverage.md`) puts the nominal 95% at
+  91 to 93% coverage for six tools, at the site. backtest-audit gets 64%, because all 4 of its hits
+  come from one template, and a resample that misses that template gives [0, 0].
 
 ## Reproduce
 
@@ -171,4 +173,5 @@ uv run leakseed impact
 uv run leakseed score --tool all
 uv run leakseed report --readme README.md
 uv run python scripts/probes.py
+uv run python scripts/bootstrap_coverage.py
 ```

@@ -61,6 +61,17 @@ def _verify(args: argparse.Namespace) -> int:
         pairs = sorted({tuple(sorted((r["id"], r["twin"]))) for r in manifest})
         chosen = random.Random(args.sample_seed).sample(pairs, min(args.sample, len(pairs)))
         ids = [i for pair in chosen for i in pair]
+    if args.out and not ids and args.data_seed != DATA_SEED:
+        # A replication stands behind the main run only at the main run's settings.
+        _check_results(args.corpus, args.out)
+        meta_path = args.out / "oracle_meta.json"
+        meta = json.loads(meta_path.read_text("utf-8")) if meta_path.is_file() else None
+        if meta is None or (meta["n"], meta["n_t"]) != (args.n, args.n_t):
+            raise SystemExit(
+                f"a replication on data seed {args.data_seed} must use the settings of "
+                f"{meta_path} (run the default data seed first), not --n {args.n} "
+                f"--n-t {args.n_t}"
+            )
     if args.out and not ids:
         _claim_results(args.corpus, args.out)
     start = time.perf_counter()
@@ -76,18 +87,32 @@ def _verify(args: argparse.Namespace) -> int:
     bad = [v for v in verdicts if v.verdict != v.label]
     seconds = time.perf_counter() - start
     print(f"{len(verdicts) - len(bad)}/{len(verdicts)} labels confirmed in {seconds:.0f}s")
+    path = args.out / "oracle_replication.json" if args.out else None
     if args.out and not ids and args.data_seed == DATA_SEED:
+        meta_path = args.out / "oracle_meta.json"
+        old = json.loads(meta_path.read_text("utf-8")) if meta_path.is_file() else None
         write_verdicts(args.out / "oracle.jsonl", verdicts)
         meta = {"n": args.n, "n_t": args.n_t, "data_seed": DATA_SEED, "modes": list(PERTURB_MODES)}
-        (args.out / "oracle_meta.json").write_text(
-            json.dumps(meta, indent=1) + "\n", "utf-8", newline="\n"
-        )
+        meta_path.write_text(json.dumps(meta, indent=1) + "\n", "utf-8", newline="\n")
+        if path.is_file():
+            # Replications at other settings no longer replicate this run; an entry without
+            # settings ran at the previous main run's.
+            settings = (args.n, args.n_t)
+            done_seeds = {
+                seed: e
+                for seed, e in json.loads(path.read_text("utf-8")).items()
+                if (e.get("n", old and old["n"]), e.get("n_t", old and old["n_t"])) == settings
+            }
+            path.write_text(
+                json.dumps(done_seeds, indent=1, sort_keys=True) + "\n", "utf-8", newline="\n"
+            )
     elif args.out and not ids:
-        path = args.out / "oracle_replication.json"
         done_seeds = json.loads(path.read_text("utf-8")) if path.is_file() else {}
         done_seeds[str(args.data_seed)] = {
             "agree": len(verdicts) - len(bad),
             "total": len(verdicts),
+            "n": args.n,
+            "n_t": args.n_t,
         }
         path.write_text(
             json.dumps(done_seeds, indent=1, sort_keys=True) + "\n", "utf-8", newline="\n"

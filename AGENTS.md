@@ -25,7 +25,8 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
 - A new tool is read as text before it is installed or run (DESIGN.md, section 6) and pinned
   in the `tools` group. Tool failures raise; they never count as "no finding".
 - Results under `results/` are generated; never edit them. README and REPORT tables are copies
-  of rows in `results/v1/published.md`, and the README's headline prose between the generated
+  of rows in `results/v1/published.md`, so is every REPORT sentence that quotes a result (its
+  "figures in the prose" section), and the README's headline prose between the generated
   markers is rendered by `leakseed report --readme README.md`; change `published.py`, not the
   copies. `tests/test_published.py` and CI hold them to the committed results. `oracle.jsonl`, `findings/` and
   `impact.jsonl` are reproducible byte for byte on one platform. Each results directory has a
@@ -48,6 +49,7 @@ Static tools only; the corpus covers code-level look-ahead, not what an LLM reme
 | `src/leakseed/published.py` | `published.md`: the README and REPORT tables and the README's headline prose |
 | `src/leakseed/cli.py` | `generate / verify / impact / score / report` |
 | `scripts/probes.py` | runs the linters over `corpus/probes`, writes `results/v1/probes.md` |
+| `scripts/bootstrap_coverage.py` | coverage of the scorecard's bootstrap interval, writes `results/v1/bootstrap_coverage.md` |
 | `corpus/v1/` | frozen corpus |
 | `corpus/probes/` | hand-written pairs for rules the v1 style cannot trigger; no rates from these |
 | `results/v1/` | oracle verdicts, findings, impact, summary, scorecard, probes, corpus stamp |
@@ -67,9 +69,9 @@ uv run leakseed generate --check
 
 Full study (about 5 minutes with 3 workers): `leakseed verify --workers 3`,
 `leakseed impact`, `leakseed score --tool all`, `leakseed report --readme README.md`,
-`uv run python scripts/probes.py`. `git diff results/` should then be empty.
+`uv run python scripts/probes.py`, `uv run python scripts/bootstrap_coverage.py`. `git diff results/` should then be empty.
 
 ## Status
 
-Open work is in `backlog.md` (gitignored, local only). The repository is public; v0.1.0 is tagged
+Open work is tracked locally, outside the repository. The repository is public; v0.1.0 is tagged
 and released.

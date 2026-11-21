@@ -159,7 +159,11 @@ is not evidence.
   none of the first two kinds. Recall here is recall on witnessable leaks.
 - **Replication.** All 368 labels are confirmed on data seeds 2026 (`results/v1/oracle.jsonl`),
   7, 11 and 13 (`results/v1/oracle_replication.json`), and every label of two fresh generator
-  seeds on the default data (`results/fresh/`).
+  seeds on the default data (`results/fresh/`). A replication must run at the main run's
+  `n` and `n_t` (`verify` refuses other settings), and each entry now records them; a main run
+  at new settings drops the entries that no longer match. The three committed entries were
+  written before entries carried settings, so the file itself does not show them; rerunning
+  data seeds 7, 11 and 13 would add them.
 - **Scope of "leak".** The oracle catches dependence on the future. It does not judge
   whether the leak matters economically (section 7), and it does not catch leakage that has
   no time order (for example duplicated rows across a random split).
@@ -173,7 +177,10 @@ is not evidence.
   independent trials. Pooled rates resample the 30 templates (class/variant) with
   replacement, 10,000 times, and report percentile 95% intervals. An interval of
   [0.0, 0.0] means no template had a flag; it is not a claim of zero variance. Percentile
-  intervals are somewhat narrow with 30 clusters.
+  intervals are too narrow with 30 clusters: `scripts/bootstrap_coverage.py` resamples the
+  30 templates as if they were the population and finds 91 to 93% coverage for a nominal 95%
+  at the site, and 64% for a tool whose hits all lie in one template
+  (`results/v1/bootstrap_coverage.md`).
 - **Clopper-Pearson for cells** (class x level, level, library, paired by level). These are
   exact for the binomial count. Within-cell correlation (libraries of one template at one
   level) is ignored, so they are somewhat narrow.

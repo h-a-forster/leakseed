@@ -50,6 +50,26 @@ def test_readme_headline_prose_is_the_generated_block():
     assert block in (ROOT / "README.md").read_text(encoding="utf-8")
 
 
+def test_report_prose_quotes_the_generated_figures():
+    text = " ".join((ROOT / "REPORT.md").read_text(encoding="utf-8").split())
+    figures = published.report_figures(_summary())
+    assert len(figures) > 25
+    assert [x for x in figures if x not in text] == []
+
+
+def test_replication_claims_match_the_recorded_data_seeds():
+    seeds = json.loads((RESULTS / "oracle_replication.json").read_text(encoding="utf-8"))
+    o = _summary()["oracle"]
+    assert all(r["agree"] == r["total"] == o["total"] for r in seeds.values())
+    assert all(r.get("n", o["n"]) == o["n"] and r.get("n_t", o["n_t"]) == o["n_t"]
+               for r in seeds.values())  # fmt: skip
+    listed = [str(o["data_seed"]), *sorted(seeds, key=int)]
+    report = " ".join((ROOT / "REPORT.md").read_text(encoding="utf-8").split())
+    assert f"on data seeds {', '.join(listed[:-1])} and {listed[-1]}" in report
+    readme = " ".join((ROOT / "README.md").read_text(encoding="utf-8").split())
+    assert len(listed) == 4 and "confirmed on four data seeds" in readme
+
+
 def test_readme_corpus_figures_match_the_summary():
     s = _summary()
     c, o = s["corpus"], s["oracle"]

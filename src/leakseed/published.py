@@ -1,8 +1,9 @@
 """The tables and headline prose that README.md and REPORT.md publish, rendered from summary.json.
 
 `leakseed report` writes them to `published.md` beside the scorecard. A test checks that every
-numeric table row in README.md and REPORT.md is a line of that file, and that the README's
-generated block is a copy of it, so a published number cannot drift from the results.
+numeric table row in README.md and REPORT.md is a line of that file, that the README's generated
+block is a copy of it, and that REPORT.md's prose contains every sentence listed under "REPORT:
+figures in the prose", so a published number cannot drift from the results.
 """
 
 from __future__ import annotations
@@ -48,7 +49,49 @@ sign-flip test over templates with Holm. For recall the counts are {recall_mcnem
 {recall_template}.
 """
 
-NUMBER_WORDS = {2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven"}
+# One sentence or clause of REPORT.md's prose per line; REPORT.md must contain each.
+REPORT_FIGURES = """\
+{leader} {leader_version} scores {leader_site} paired at the site
+Counting a pair that at least one tool scores on its own gives {union_site_full}.
+{material} leaky files reach |Sharpe| >= {threshold:g} on drift-free data, against {max_clean} \
+for the largest clean twin. No tool finds {material_missed} of those {material} at the site.
+{n_uncaught} classes are unfound at every level
+{uncaught_detail}.
+{leader}'s recall is {leader_recall}, but its false-positive rate is {leader_fpr}
+At its `{leader_top}` severity alone it scores {leader_strict_site} at the site with \
+{leader_strict_fpr} false positives.
+{halved} of {n_tools} lose more than half their site score from L0 to L1. {leader} inlines \
+constants and stays at {leader_l1}/{per_level}.
+{files} scripts = {n} leak/clean pairs: {classes} classes x {n_levels} obfuscation levels x \
+{libs}, from {templates} templates.
+It confirms {agree}/{files} labels
+it used {runs:,} script runs, and the {n} leak witnesses are {witnesses}.
+Intervals are a cluster bootstrap over the {templates} templates.
+gives {merged_site}/{n} at the site and {merged_paired}/{n} paired discrimination, against \
+{union_site} and {union_paired} in the row
+Top severity only (recall / false positives / site): {strict_line}.
+Mean over classes at the site: {class_mean_line}.
+At the site, {site_mcnemar} of {pairs} pairs pass p < 0.05 with McNemar over files
+Only {site_template} of {pairs} survive the template sign-flip test with Holm:
+{beats}
+{gap_a} against {gap_b} shows the gap: McNemar {gap_mcnemar}, template test {gap_template}.
+For recall the counts are {recall_mcnemar} and {recall_template}.
+Paired at the site, of {per_level} at each level:
+No tool finds {missed_l0} L0 leaks, the plainest form.
+Flagging that dead branch costs false positives at L3 ({l3_fps}).
+{uncaught_and} are unfound at the site at any level.
+`restatement_overwrite` is found only by {restatement_tool}, in {restatement_k} of \
+{restatement_n} pairs.
+The other {n_immaterial} classes have no material file.
+Of the {material} material files, {material_by_tool}, and any linter {material_any}.
+all of them for {n_exact} tools, {inexact}.
+a random code line scores {chance_lo} to {chance_hi}% on these files
+"""
+
+NUMBER_WORDS = {
+    1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven", 8: "Eight",
+    9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve",
+}  # fmt: skip
 
 
 def _fmt(e: dict) -> str:
@@ -126,7 +169,8 @@ def tables(s: dict) -> list[str]:
     return out
 
 
-def readme_block(s: dict) -> str:
+def _values(s: dict) -> dict:
+    """The figures both proses quote; raises when the results no longer support a sentence."""
     tools, order = s["tools"], _order(s)
     leader = order[0]
     lead = tools[leader]
@@ -151,7 +195,7 @@ def readme_block(s: dict) -> str:
     impact = s["impact"]
     uncaught = [f"`{c}`" for c in s["coverage"]["uncaught_classes"]]
     merged, union = s["merged"], s["union"]
-    values = {
+    return {
         "n": merged["n"],
         "merged_site": merged["paired_site"],
         "merged_paired": merged["paired"],
@@ -177,6 +221,115 @@ def readme_block(s: dict) -> str:
         "recall_mcnemar": sum(x["p"] < 0.05 for x in recall),
         "recall_template": sum(x["p_cluster_holm"] < 0.05 for x in recall),
     }
+
+
+def _join(items: list[str]) -> str:
+    return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def _p3(p: float) -> str:
+    return f"{p:.4f}" if p < 0.001 else f"{p:.3f}"
+
+
+def report_figures(s: dict) -> list[str]:
+    """Every sentence of REPORT.md's prose that quotes a result, rendered from the summary."""
+    tools, order = s["tools"], _order(s)
+    v = _values(s)
+    lead = tools[v["leader"]]
+    primary = {t: tools[t]["primary"] for t in order}
+    impact, classes = s["impact"], s["impact"]["classes"]
+    unfound = s["coverage"]["uncaught_classes"]
+
+    def detail(c: str) -> str:
+        x = classes[c]
+        if x["material"] == x["pairs"]:
+            return f"`{c}` (0/{x['pairs']}, and all {x['pairs']} are material)"
+        return f"`{c}`"
+
+    modes = s["oracle"]["leak_witness_modes"]
+    if set(modes) != {"values", "availability"}:
+        raise ValueError("the leak witnesses are no longer only values and availability")
+    graded = [t for t in order if tools[t]["top_severity"]]
+    graded.sort(key=lambda t: -tools[t]["strict"]["paired_site"]["k"])
+    strict = [
+        f"{t} " + " / ".join(f"{100 * tools[t]['strict'][m]['rate']:.1f}"
+                             for m in ("recall", "fpr", "paired_site"))
+        for t in graded
+    ]  # fmt: skip
+    by_mean = sorted(order, key=lambda t: -primary[t]["paired_site_class_mean"])[:3]
+    site = [x for x in s["mcnemar"] if x["measure"] == "paired at the site"]
+    wins: dict[str, list[tuple[float, str]]] = {}
+    for x in site:
+        if x["p_cluster_holm"] < 0.05:
+            winner, loser = (x["a"], x["b"]) if x["only_a"] > x["only_b"] else (x["b"], x["a"])
+            wins.setdefault(winner, []).append((x["p_cluster_holm"], loser))
+    beats = [
+        f"{w} beats " + _join([f"{loser} ({_p3(p)})" for p, loser in sorted(wins[w])]) + "."
+        for w in sorted(wins, key=lambda w: (-len(wins[w]), order.index(w)))
+    ]
+    gap = min((x for x in site if x["p_cluster_holm"] >= 0.05), key=lambda x: x["p"])
+    l3 = {t: tools[t]["fpr_by_level"]["L3"] for t in order}
+    restated = {t: tools[t]["paired_site_by_class"]["restatement_overwrite"] for t in order}
+    restated = {t: e for t, e in restated.items() if e["k"]}
+    if len(restated) != 1:
+        raise ValueError("restatement_overwrite is no longer found by exactly one tool")
+    (restatement_tool, restatement), = restated.items()  # fmt: skip
+    found = impact["material_found_by_tool"]
+    exact = {t: primary[t]["localisation_exact"] for t in order}
+    inexact = [f"{e['k']}/{e['n']} for {t}" for t, e in exact.items() if e["k"] != e["n"]]
+    chance = [100 * primary[t]["localisation_chance"] for t in order]
+    values = {
+        **v,
+        "leader_version": _version(lead["version"]),
+        "leader_site": _fmt(lead["primary"]["paired_site"]),
+        "leader_recall": f"{100 * lead['primary']['recall']['rate']:.1f}%",
+        "leader_fpr": f"{100 * lead['primary']['fpr']['rate']:.1f}%",
+        "union_site_full": _fmt(s["union"]["paired_site"]),
+        "n_tools": NUMBER_WORDS[len(order)].lower(),
+        "n_uncaught": NUMBER_WORDS[len(unfound)],
+        "uncaught_detail": _join([detail(c) for c in unfound]),
+        "uncaught_and": _join([f"`{c}`" for c in unfound]),
+        "files": s["corpus"]["files"],
+        "classes": s["corpus"]["classes"],
+        "n_levels": len(s["corpus"]["levels"]),
+        "libs": "/".join(s["corpus"]["libs"]),
+        "templates": s["corpus"]["templates"],
+        "agree": s["oracle"]["agree"],
+        "runs": s["oracle"]["runs"],
+        "witnesses": f"{modes['values']} from the values mode and {modes['availability']} from "
+        "availability",
+        "strict_line": ", ".join(strict),
+        "class_mean_line": ", ".join(
+            f"{t} {100 * primary[t]['paired_site_class_mean']:.1f}%" for t in by_mean
+        ),
+        "beats": "\n".join(beats),
+        "gap_a": gap["a"],
+        "gap_b": gap["b"],
+        "gap_mcnemar": f"{gap['p']:.2g}",
+        "gap_template": _p3(gap["p_cluster_holm"]),
+        "missed_l0": len(s["missed_l0"]),
+        "l3_fps": ", ".join(
+            f"{t} {l3[t]['k']}/{l3[t]['n']}" for t in sorted(l3, key=lambda t: -l3[t]["k"])[:2]
+        ),
+        "restatement_tool": restatement_tool,
+        "restatement_k": restatement["k"],
+        "restatement_n": restatement["n"],
+        "n_immaterial": NUMBER_WORDS[sum(not x["material"] for x in classes.values())].lower(),
+        "material_by_tool": ", ".join(
+            [f"{order[0]} finds {found[order[0]]}"]
+            + [f"{t} {found[t]}" for t in sorted(order[1:], key=lambda t: -found[t])]
+        ),
+        "material_any": impact["material_found_by_any"],
+        "n_exact": NUMBER_WORDS[len(order) - len(inexact)].lower(),
+        "inexact": _join(inexact),
+        "chance_lo": f"{min(chance):.0f}",
+        "chance_hi": f"{max(chance):.0f}",
+    }
+    return REPORT_FIGURES.format(**values).splitlines()
+
+
+def readme_block(s: dict) -> str:
+    values = _values(s)
     text = README_PROSE.format(**values)
     paragraphs = []
     for para in text.strip("\n").split("\n\n"):
@@ -193,6 +346,7 @@ def readme_block(s: dict) -> str:
 
 def render(s: dict) -> str:
     out = tables(s)
+    out += ["", "## REPORT: figures in the prose", "", *(f"- {x}" for x in report_figures(s))]
     out += ["", "## README: headline prose", "", readme_block(s).rstrip("\n")]
     return "\n".join(out) + "\n"
 

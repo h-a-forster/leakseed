@@ -96,6 +96,7 @@ uv run leakseed impact                   # Sharpe of each file on drift-free dat
 uv run leakseed score --tool all         # run the linters, store findings
 uv run leakseed report --readme README.md   # results/v1 summary, scorecard, published tables
 uv run python scripts/probes.py          # results/v1/probes.md
+uv run python scripts/bootstrap_coverage.py   # results/v1/bootstrap_coverage.md
 uv run leakseed generate --seed 7 --out tmp/c7   # a fresh corpus from another seed
 ```
 
